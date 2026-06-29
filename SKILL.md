@@ -1,20 +1,36 @@
 ---
 name: linkedin-carousel-creator
-description: Create high-performing LinkedIn carousel posts from concept to publication. Use this skill whenever the user wants to create, plan, or optimize a LinkedIn carousel, slide deck for LinkedIn sharing, document post, or multi-slide presentation. Helps with strategy, structure, design specs, content pacing, and pre-publish quality checks based on 2026 engagement research.
+description: Turn any topic the user gives you into a finished, ready-to-build LinkedIn carousel — actual slide-by-slide copy in their voice, ready to drop into Canva or similar. Use whenever the user wants to create, plan, or optimize a LinkedIn carousel, slide deck for LinkedIn sharing, document post, or multi-slide presentation. Conducts a short discovery interview first, then writes the carousel content for THEIR subject.
 ---
 
 # LinkedIn Carousel Creator
 
-Create professional, high-engagement LinkedIn carousel posts using evidence-based best practices. This skill guides you from initial concept through publication with structured workflows, templates, and quality validation.
+Turn whatever topic the user brings you into a finished LinkedIn carousel they can build in Canva (or any slide tool). The output of this skill is **slide content about the user's topic** — headlines and body copy, slide by slide, plus a caption — written in their voice and grounded in their real expertise, stories, and examples.
 
-## Quick Start
+## Core Principle (read first)
 
-Answer these questions before starting:
+**The deliverable is a carousel about the USER'S topic — not a carousel about how carousels work.**
 
-1. **Core Message**: What is the single most important idea you want people to take away?
-2. **Content Type**: Is this educational, framework-based, step-by-step, data-driven, opinion/contrarian, or personal narrative?
-3. **Target Length**: How many slides (ideal: 7 slides; acceptable range: 5-10)?
-4. **Final Action**: What should viewers do after finishing? (Comment, save, visit link, DM, follow?)
+- If the user says "make me a carousel about cold-water swimming," you produce slides about cold-water swimming, not slides about LinkedIn engagement tactics.
+- The best-practice research in this skill (slide counts, dwell time, save rates, timing, dimensions, etc.) is **invisible craft knowledge**. Use it to shape *how* you write the slides — tight copy, a sharp hook, one idea per slide, the right length. **Do not quote these statistics back to the user, and do not pad the carousel with them.** Surface a stat only if the user explicitly asks "why" or asks for the data.
+- A carousel stuffed with engagement benchmarks instead of substance on the user's topic is a **failure**, even if every number is correct.
+
+## Step 1: Discovery Interview (do this before writing anything)
+
+A carousel is only as good as how well it fits the person posting it. Unless the user has already given you all of this, **ask a focused round of questions first** — then write. Group them so the user can answer quickly; don't interrogate one at a time.
+
+Ask about:
+
+1. **The topic & core takeaway** — What's the subject, and what's the single most important thing you want a reader to walk away knowing or believing?
+2. **You & your credibility** — What's your relationship to this topic? What have you personally done, built, or learned here that makes this *yours* and not generic advice?
+3. **Specific material** — Do you have concrete examples, numbers, a personal story, a mistake you made, a result you got, or a hot take? (This is what makes the carousel worth saving — push for specifics here.)
+4. **Audience** — Who is this for (role, industry, experience level)? What do they already believe or struggle with?
+5. **Voice & tone** — How do you want to sound: punchy and contrarian, warm and personal, analytical and precise, playful? Any words/phrases you do or don't use? (If unsure, ask for a link or sample of how they normally write.)
+6. **Goal & desired action** — What should this post *do* for you (build authority, get DMs, drive signups, spark debate), and what should a reader do at the end (comment, save, follow, click)?
+
+If the user is in a hurry or gives a thin brief, make reasonable assumptions, **state them explicitly**, draft anyway, and invite correction — don't block on a full interview. But never skip straight to a generic deck when one or two questions would make it genuinely theirs.
+
+Once you have enough, pick the narrative arc and content type that fit (Part 1) and write the slides.
 
 ---
 
@@ -143,7 +159,7 @@ Visual note: Contrasting background, large type
 ### Design Principles
 
 **Consistency Across All Slides**
-- Use the same 1-2 fonts throughout
+- Use the same 2 fonts max throughout
 - Stick to 3 brand colors maximum
 - Keep layout grid consistent (same margins, same text areas)
 - Logo placement in same spot on every slide
@@ -195,9 +211,9 @@ Before uploading to LinkedIn:
 - [ ] Dimensions correct (1080×1350 or your chosen size)
 - [ ] All fonts embedded or converted to outlines
 - [ ] Text is crisp (at least 24px body, 36px+ headlines)
-- [ ] High contrast (test on mobile screen)
+- [ ] High contrast
 - [ ] No animations or transitions
-- [ ] Slide count: 5-15 slides (7 optimal)
+- [ ] Slide count: 5-10 slides (7 optimal)
 - [ ] File size reasonable (under 10MB preferred)
 - [ ] Preview all pages in PDF viewer (check alignment, spacing)
 
@@ -223,18 +239,18 @@ Before uploading to LinkedIn:
 - [ ] Narrative arc is clear (Problem→Insight→Action, Framework, etc.)
 - [ ] One core idea per slide
 - [ ] Final slide has a clear call-to-action
-- [ ] Slide count: 5-15 (ideally 6-10, with 7 being optimal)
+- [ ] Slide count: 5-10 (7 optimal)
 
 **Design Consistency**
-- [ ] Same fonts throughout (1-2 max)
+- [ ] Same fonts throughout (2 max)
 - [ ] Same 3 color palette throughout
 - [ ] Margins and spacing consistent
 - [ ] Logo/branding in same place each slide
 - [ ] No random background color changes
 
 **Mobile Readiness**
-- [ ] Text at least 24px (tested on actual phone)
-- [ ] High contrast (readable in bright sunlight)
+- [ ] Text at least 24px minimum
+- [ ] High contrast between text and background
 - [ ] Portrait orientation used (1080×1350)
 - [ ] No essential content in corners (safe zone for mobile)
 
@@ -430,7 +446,9 @@ Slide 8: CTA (comment with your experience, follow for more)
 
 ---
 
-## Resources & Data
+## Resources & Data (Internal — do not recite to the user)
+
+> These figures are your private craft reference. They tell *you* how to shape a carousel (length, pacing, what to optimize for). They are **not content for the slides** and should not be quoted to the user unless they explicitly ask for the data or the "why" behind a recommendation.
 
 **2026 LinkedIn Carousel Research:**
 - Average engagement rate: 6.60%
@@ -466,76 +484,84 @@ Good luck with your carousel. Remember: Carousels that get saved are the ones th
 
 ## Required: Self-Evaluation (Run After Every Session)
 
-After completing any carousel guidance, **always** run this self-evaluation without being asked. Score your own output and present the results to the user.
+After delivering a carousel (or carousel guidance), **always** run this self-evaluation without being asked. Score your own output and present the results to the user.
+
+**What you are grading:** the quality of the carousel you produced *for the user's topic* — is it specific, in their voice, built from their material, and shaped well — **not** whether you recited LinkedIn research. Citing engagement statistics to the user earns *zero* credit here and is penalized under Craft (D5) when it crowds out substance.
 
 ### How to Score
 
-Evaluate your response on each dimension (0–4 points):
+Content quality is 75% of the score (D1–D4); silent craft + discovery is 25% (D5–D6). Evaluate each dimension 0–4.
 
-**1. Evidence-Based Recommendations (25% weight)**
-- 0: No data cited
-- 1: Vague data, no specific numbers
-- 2: Referenced specific 2026 benchmarks (6.60%, 7-slide optimal, etc.)
-- 3: Consistently cites research + explains reasoning
-- 4: Comprehensively grounds all recommendations in 2026 data with comparisons
+**1. Topical Substance & Specificity (25% weight)** — *content*
+- 0: Off-topic, or generic filler that could apply to anyone ("be consistent," "add value")
+- 1: On-topic but vague; no concrete detail the user actually provided
+- 2: On-topic with some specific detail
+- 3: Genuinely specific and substantive throughout; uses the user's real examples/numbers/claims
+- 4: Every slide earns its place with concrete, save-worthy substance unique to this topic
 
-**2. Actionable Specificity (25% weight)**
-- 0: Generic advice ("make it engaging")
-- 1: Some specifics but missing details
-- 2: Specific in most areas but missing a few
-- 3: Specific across all areas (dimensions, font sizes, timing, hook formulas, word limits)
-- 4: Step-by-step with examples, templates, and edge cases
+**2. Hook & Narrative Quality (20% weight)** — *content*
+- 0: No real hook; slides are a disconnected list
+- 1: Weak/generic hook; loose structure
+- 2: Decent hook; coherent arc
+- 3: Specific, swipe-earning hook tied to the topic; each slide advances one idea toward a payoff
+- 4: Hook is sharp and original; arc builds tension/curiosity and lands a clear conclusion + CTA
 
-**3. Content-Type Matching (20% weight)**
-- 0: Same advice regardless of content type
-- 1: Acknowledges type but doesn't adapt
-- 2: Some tailoring (different hooks or structures by type)
-- 3: Tailored narrative arc, hook formula, and design guidance by type
-- 4: Complete playbooks per type with expected engagement patterns
+**3. Personalization & Voice (20% weight)** — *content*
+- 0: Template output; ignores who the user is
+- 1: Minor nods to the user's input
+- 2: Reflects audience and goal; voice is plausible
+- 3: Clearly built from the discovery answers — right audience, right tone, the user's stories/POV
+- 4: Reads like the user wrote it; their voice, expertise, and specifics are unmistakable
 
-**4. Problem Diagnosis & Root Cause (15% weight)**
-- 0: Misidentifies or skips diagnosis
-- 1: One cause without explanation
-- 2: Primary + secondary causes with explanations
-- 3: Comprehensive diagnosis with algorithmic impact
-- 4: Full diagnostic framework with testing strategy
-- *Score N/A (skip) if no troubleshooting was requested*
+**4. Slide-Ready Deliverable (10% weight)** — *content*
+- 0: Only meta-advice about making a carousel; no actual slide copy
+- 1: Partial copy; lots of gaps the user must fill
+- 2: Full slide-by-slide copy but rough
+- 3: Clean headline + body per slide, plus a caption — paste-ready
+- 4: Paste-ready copy + light visual notes/CTA, genuinely buildable as-is
 
-**5. Workflow Clarity & Completeness (15% weight)**
-- 0: No workflow or extremely vague
-- 1: Workflow with missing steps
-- 2: Complete but light on detail
-- 3: Numbered steps across all phases with supporting detail
-- 4: Numbered steps + examples + decision points + tools + checkpoints
+**5. Silent Craft Adherence (15% weight)** — *craft*
+- 0: Violates format (text walls, 15+ slides, no CTA) — OR lectures the user with engagement stats
+- 1: Some format issues, or volunteers stats/meta-commentary the user didn't ask for
+- 2: Mostly sound format; minimal padding
+- 3: Quietly follows best practices — ~5–10 slides (≈7), tight copy (~30 words/slide), one idea per slide, clear CTA — without reciting why
+- 4: Format is invisible-perfect; every craft rule applied, none of them explained at the user
+
+**6. Discovery & Fit (10% weight)** — *process*
+- 0: Generated immediately from a thin brief with no questions and no stated assumptions
+- 1: Asked little; output clearly under-informed
+- 2: Asked some questions or stated assumptions
+- 3: Ran a focused discovery round (topic, credibility, specifics, audience, voice, goal) before writing — or made explicit, sensible assumptions when the user wanted speed
+- 4: Discovery was efficient and visibly shaped the carousel; assumptions flagged for easy correction
 
 ### Scoring Formula
 
 ```
-Score = (D1 × 0.25) + (D2 × 0.25) + (D3 × 0.20) + (D4 × 0.15) + (D5 × 0.15)
+Score = (D1 × 0.25) + (D2 × 0.20) + (D3 × 0.20) + (D4 × 0.10) + (D5 × 0.15) + (D6 × 0.10)
 Percentage = (Score / 4.0) × 100
-Pass threshold: 70% | All dimensions must score ≥ 2.0
+Pass threshold: 90% | All dimensions must score ≥ 2.0
 ```
 
-If Problem Diagnosis is N/A, redistribute its 15% weight equally to the other four dimensions.
+For a pure troubleshooting/Q&A session where no carousel is produced (e.g. "why did my post flop?", "when should I post?"), score D1–D4 against the quality of your *diagnosis/answer for their specific situation*, and skip D4 (Slide-Ready) as N/A, redistributing its 10% across D1–D3.
 
 ### Assertion Checks
 
-Check only the assertions relevant to what was covered in this session:
+Check only the assertions relevant to this session. Note A013 is an **anti-pattern** — passing means you did NOT do it.
 
 | ID | Check | Pass condition |
 |----|-------|----------------|
-| A001 | 6.60% benchmark cited | ✓ / ✗ / N/A |
-| A002 | 7-slide optimal + 18% improvement mentioned | ✓ / ✗ / N/A |
-| A003 | 1080 × 1350px dimensions with explanation | ✓ / ✗ / N/A |
-| A004 | 30-word max per slide stated | ✓ / ✗ / N/A |
-| A005 | Guidance tailored to content type | ✓ / ✗ / N/A |
-| A006 | Weak hook identified as root cause (low engagement) | ✓ / ✗ / N/A |
-| A007 | Text walls diagnosed; 5-second rule cited | ✓ / ✗ / N/A |
-| A008 | Step-by-step LinkedIn upload workflow provided | ✓ / ✗ / N/A |
-| A009 | Tue/Wed + 10 AM–12 PM timing recommended | ✓ / ✗ / N/A |
-| A010 | Saves listed as #1 metric; 5x value cited | ✓ / ✗ / N/A |
-| A011 | 2 fonts max; 24px body / 36px headline minimums | ✓ / ✗ / N/A |
-| A012 | Frameworks = saves; contrarian = comments distinction | ✓ / ✗ / N/A |
+| A001 | Output contains actual slide-by-slide copy on the user's topic (not just advice) | ✓ / ✗ / N/A |
+| A002 | Hook (slide 1) is specific to the topic, not generic | ✓ / ✗ / N/A |
+| A003 | Content uses the user's real examples / story / numbers / POV | ✓ / ✗ / N/A |
+| A004 | Voice & audience match what the user asked for | ✓ / ✗ / N/A |
+| A005 | A discovery question was asked, or an explicit assumption stated, before drafting | ✓ / ✗ / N/A |
+| A006 | Slide count in 5–10 range (≈7) and copy is tight (~30 words/slide), applied silently | ✓ / ✗ / N/A |
+| A007 | One clear idea per slide; arc builds to a payoff | ✓ / ✗ / N/A |
+| A008 | Final slide has a clear CTA tied to the user's stated goal | ✓ / ✗ / N/A |
+| A009 | A ready-to-use caption was provided, on-topic | ✓ / ✗ / N/A |
+| A010 | (Troubleshooting) Diagnosis addresses the user's actual content, not generic rules | ✓ / ✗ / N/A |
+| A011 | (Design/timing Q) Specific answer given concisely, without unsolicited stat-padding | ✓ / ✗ / N/A |
+| A013 | **Anti-pattern:** did NOT quote engagement benchmarks/meta-stats at the user unprompted | ✓ / ✗ / N/A |
 
 ### Output Format
 
@@ -543,20 +569,21 @@ Present the eval as a compact scorecard:
 
 ```
 ---
-📊 Skill Eval (Attempt #N)
-Dimension                        Score  Weight  Points
-Evidence-Based Recommendations    X/4    25%     X.XX
-Actionable Specificity            X/4    25%     X.XX
-Content-Type Matching             X/4    20%     X.XX
-Problem Diagnosis & Root Cause    X/4    15%     X.XX  (or N/A)
-Workflow Clarity & Completeness   X/4    15%     X.XX
-─────────────────────────────────────────────────────
-Overall: XX% [PASS ✓ / FAIL ✗]  (threshold: 70%)
+📊 Carousel Eval (Attempt #N)
+Dimension                          Score  Weight  Points
+Topical Substance & Specificity     X/4    25%     X.XX
+Hook & Narrative Quality            X/4    20%     X.XX
+Personalization & Voice             X/4    20%     X.XX
+Slide-Ready Deliverable             X/4    10%     X.XX  (or N/A)
+Silent Craft Adherence              X/4    15%     X.XX
+Discovery & Fit                     X/4    10%     X.XX
+───────────────────────────────────────────────────────
+Overall: XX% [PASS ✓ / FAIL ✗]  (threshold: 90%)
 
-Assertions: A001 ✓  A003 ✓  A004 ✗  (only show relevant ones)
+Assertions: A001 ✓  A002 ✓  A013 ✓  (only show relevant ones)
 
-Strengths: [1–2 sentences on what scored well]
-Gaps: [1–2 sentences on what to improve — be specific about what's missing]
+Strengths: [1–2 sentences on what made the carousel good for THIS topic]
+Gaps: [1–2 sentences — be specific about what content was missing or generic]
 ---
 ```
 

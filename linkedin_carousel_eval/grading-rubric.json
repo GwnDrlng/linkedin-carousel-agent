@@ -1,313 +1,301 @@
 {
   "grading_rubric": {
+    "what_this_evaluates": "Whether the skill produces a strong, ready-to-build LinkedIn carousel ABOUT THE USER'S TOPIC — specific, in their voice, built from their material — and quietly applies format best practices. It does NOT reward reciting LinkedIn engagement research back to the user; doing so is penalized.",
+    "weighting_philosophy": "Content quality (D1-D4) = 75% of score. Silent craft + discovery (D5-D6) = 25%. The 2026 research figures are invisible craft inputs, never deliverable content.",
     "dimensions": [
       {
-        "name": "Evidence-Based Recommendations",
+        "name": "Topical Substance & Specificity",
         "weight": 25,
-        "description": "Does output reference 2026 research data and provide evidence for claims?",
+        "category": "content",
+        "description": "Is the carousel genuinely about the user's topic, with concrete, save-worthy substance drawn from their real input — not generic filler?",
         "score_levels": {
-          "0": "No reference to data or research; claims are unsupported",
-          "1": "Mentions data but without specific numbers or unclear sourcing",
-          "2": "References specific 2026 benchmarks (e.g., 6.60% engagement rate, 7-slide optimal)",
-          "3": "Consistently cites research data with specific metrics; explains why recommendations are evidence-based",
-          "4": "Comprehensively grounds all recommendations in 2026 research; provides comparative data (e.g., carousels vs other formats); explains algorithmic reasoning"
+          "0": "Off-topic, or generic filler that could apply to any post ('be consistent', 'add value', 'show up daily')",
+          "1": "On-topic but vague; no concrete detail the user actually provided",
+          "2": "On-topic with some specific detail, but parts feel like placeholder advice",
+          "3": "Specific and substantive throughout; uses the user's real examples, numbers, or claims",
+          "4": "Every slide earns its place with concrete, save-worthy substance unique to this topic and this person"
         },
         "evaluation_questions": [
-          "Does output cite specific 2026 metrics (engagement rates, slide counts, timing data)?",
-          "Are claims backed by research from the skill's resources?",
-          "Does output explain why recommendations work (algorithm logic, user behavior)?",
-          "Are benchmarks provided for comparison (e.g., 6.60% is average, your 2% is below)?",
-          "Does output reference multiple data sources where appropriate?"
+          "Is the carousel about the USER'S subject, or did it drift into LinkedIn/carousel meta-advice?",
+          "Does each slide say something concrete, or could it be copy-pasted onto any topic?",
+          "Are the user's specific examples, numbers, stories, or opinions actually used?",
+          "Would a reader learn or feel something real, or just read truisms?"
         ]
       },
       {
-        "name": "Actionable Specificity",
-        "weight": 25,
-        "description": "Are recommendations specific and actionable, or vague and generic?",
-        "score_levels": {
-          "0": "Generic advice without specifics (e.g., 'make your hook catchy')",
-          "1": "Some specific guidance but missing details (e.g., mentions slide count without why)",
-          "2": "Specific in most areas (e.g., 'use 7 slides because 18% better than other lengths') but missing some details",
-          "3": "Specific and actionable across all areas (slide count, design specs, timing, hook formula)",
-          "4": "Detailed, step-by-step guidance with examples, templates, and decision trees; covers edge cases"
-        },
-        "evaluation_questions": [
-          "Are slide count recommendations specific (e.g., '7 is optimal, range 5-10')?",
-          "Are design specs provided (dimensions, fonts, colors)?",
-          "Is timing advice specific (day + time, not just 'post during business hours')?",
-          "Are hook formulas provided with examples?",
-          "Does output provide templates or worksheets?",
-          "Are action items numbered/clear (step-by-step workflow)?"
-        ]
-      },
-      {
-        "name": "Content-Type Matching",
+        "name": "Hook & Narrative Quality",
         "weight": 20,
-        "description": "Does output tailor guidance to the specific content type (framework, narrative, contrarian, etc.)?",
+        "category": "content",
+        "description": "Is slide 1 a swipe-earning hook tied to the topic, and does the deck flow as a coherent arc to a clear payoff?",
         "score_levels": {
-          "0": "Generic guidance that doesn't account for content type differences",
-          "1": "Acknowledges content type but doesn't adapt guidance accordingly",
-          "2": "Adapts some guidance by content type (e.g., different hook for contrarian vs framework)",
-          "3": "Provides tailored narrative structure, hook formula, and design guidance by content type",
-          "4": "Provides complete content-type-specific playbooks: narrative arc, hook formula, slide structure, typical save rate, CTA approach"
+          "0": "No real hook; slides are a disconnected list",
+          "1": "Weak or generic hook; loose, listy structure",
+          "2": "Decent hook and a coherent order",
+          "3": "Specific, swipe-earning hook tied to the topic; each slide advances one idea toward a payoff",
+          "4": "Hook is sharp and original; the arc builds curiosity/tension and lands a clear conclusion + CTA"
         },
         "evaluation_questions": [
-          "Does output distinguish between frameworks, narratives, contrarian, data-driven, step-by-step?",
-          "Are narrative arcs different by content type?",
-          "Are hook formulas tailored (e.g., contrarian hook vs framework hook)?",
-          "Does output explain why each content type works (framework = saveable, contrarian = comments)?",
-          "Does output provide expected performance (save rate, engagement patterns) by type?"
+          "Does slide 1 promise specific value or provoke curiosity about THIS topic (not 'Tips for success')?",
+          "Does each slide make you want the next one?",
+          "Is there a clear arc (e.g. problem -> insight -> example -> action), or scattered points?",
+          "Does the deck land a conclusion, not just stop?"
         ]
       },
       {
-        "name": "Problem Diagnosis & Root Cause",
-        "weight": 15,
-        "description": "When user reports poor performance, does output identify root causes?",
+        "name": "Personalization & Voice",
+        "weight": 20,
+        "category": "content",
+        "description": "Does the carousel reflect the discovery answers — the user's audience, goal, expertise, and voice — so it reads like them, not a template?",
         "score_levels": {
-          "0": "Doesn't diagnose problem or misidentifies cause",
-          "1": "Identifies one possible cause but doesn't explain why it matters",
-          "2": "Identifies primary cause (e.g., weak hook) and secondary causes (text walls) with explanations",
-          "3": "Comprehensive diagnosis: identifies root cause, explains algorithmic impact, provides evidence",
-          "4": "Diagnostic framework: asks clarifying questions, prioritizes causes by impact, provides testing strategy for verification"
+          "0": "Template output; ignores who the user is",
+          "1": "Minor nods to the user's input",
+          "2": "Reflects audience and goal; voice is plausible but generic",
+          "3": "Clearly built from discovery — right audience, right tone, the user's stories/POV",
+          "4": "Reads like the user wrote it; their voice, expertise, and specifics are unmistakable"
         },
         "evaluation_questions": [
-          "When user reports low engagement, is root cause identified (hook, text density, CTA)?",
-          "Is diagnostic reasoning explained (why this causes the symptom)?",
-          "Is algorithmic impact explained (e.g., 'weak hook = algorithm doesn't distribute')?",
-          "Does output help user test hypothesis (A/B test, iteration strategy)?",
-          "Are secondary causes mentioned if primary cause isn't the issue?"
+          "Is the content aimed at the audience the user named (role, level, beliefs)?",
+          "Does the tone match what the user asked for (punchy, warm, analytical, etc.)?",
+          "Is the user's personal credibility/experience woven in?",
+          "Does the CTA serve the user's stated goal?"
         ]
       },
       {
-        "name": "Workflow Clarity & Completeness",
-        "weight": 15,
-        "description": "Are step-by-step workflows clear, complete, and easy to follow?",
+        "name": "Slide-Ready Deliverable",
+        "weight": 10,
+        "category": "content",
+        "description": "Did the skill produce actual paste-able slide copy (headline + body per slide, plus a caption), not just advice about making a carousel?",
         "score_levels": {
-          "0": "No workflow provided or extremely vague",
-          "1": "Workflow provided but with missing steps or unclear sequencing",
-          "2": "Complete workflow with clear steps, but could use more detail or examples",
-          "3": "Step-by-step workflow with all major steps, clear sequencing, and supporting detail",
-          "4": "Comprehensive workflow with: numbered steps, examples, decision points, tools recommended, files needed, checkpoints"
+          "0": "Only meta-advice about how to make a carousel; no actual slide copy",
+          "1": "Partial copy with large gaps the user must fill",
+          "2": "Full slide-by-slide copy, but rough or inconsistent",
+          "3": "Clean headline + body for each slide, plus a ready caption — paste-ready",
+          "4": "Paste-ready copy with light visual notes and CTA; genuinely buildable in Canva as-is"
         },
         "evaluation_questions": [
-          "Is workflow presented step-by-step (numbered or clear sequence)?",
-          "Are all major phases included (planning, content, design, technical, quality check, posting, tracking)?",
-          "Are tools recommended (Canva, Google Slides, etc.)?",
-          "Are checkpoints provided (pre-publication checklist)?",
-          "Is there an example or case study walkthrough?",
-          "Are decision points clear (choose one narrative arc, choose dimensions, etc.)?"
+          "Can the user drop this straight into Canva and build, or do they still have to write the content?",
+          "Is there a headline AND body for each slide?",
+          "Is a ready-to-post caption included?",
+          "N/A for pure troubleshooting/Q&A sessions where no carousel was requested."
+        ]
+      },
+      {
+        "name": "Silent Craft Adherence",
+        "weight": 15,
+        "category": "craft",
+        "description": "Does the carousel quietly follow format best practices WITHOUT lecturing the user about them or padding with engagement statistics?",
+        "score_levels": {
+          "0": "Breaks format (text walls, 15+ slides, no CTA) OR lectures the user with engagement stats/benchmarks",
+          "1": "Some format issues, or volunteers stats/meta-commentary the user didn't ask for",
+          "2": "Mostly sound format with minimal padding",
+          "3": "Quietly applies best practices: ~5-10 slides (about 7), tight copy (~30 words/slide), one idea per slide, clear CTA — without reciting why",
+          "4": "Format is invisibly perfect; every craft rule applied, none of them explained at the user"
+        },
+        "evaluation_questions": [
+          "Is slide count in the 5-10 range (about 7)?",
+          "Is each slide tight (~30 words), one idea per slide?",
+          "Is there a clear CTA on the final slide?",
+          "Did the output AVOID quoting engagement benchmarks (6.60%, 18%, 5x, etc.) at the user? (Quoting them unprompted should cost points here.)"
+        ]
+      },
+      {
+        "name": "Discovery & Fit",
+        "weight": 10,
+        "category": "process",
+        "description": "Before drafting, did the skill run a focused discovery round (or make explicit assumptions) so the carousel fits this specific person?",
+        "score_levels": {
+          "0": "Generated immediately from a thin brief, no questions and no stated assumptions",
+          "1": "Asked little; output clearly under-informed",
+          "2": "Asked some questions or stated some assumptions",
+          "3": "Ran a focused discovery round (topic, credibility, specifics, audience, voice, goal) before writing, or made explicit sensible assumptions when the user wanted speed",
+          "4": "Discovery was efficient and visibly shaped the carousel; assumptions flagged for easy correction"
+        },
+        "evaluation_questions": [
+          "If the brief was thin, did the skill ask the right curation questions before generating?",
+          "When it assumed instead of asking, were the assumptions stated and correctable?",
+          "Do the discovery answers visibly show up in the final carousel?"
         ]
       }
     ],
-    "overall_pass_threshold": 70,
+    "overall_pass_threshold": 90,
     "minimum_dimension_score": 2,
-    "scoring_formula": "Sum of (dimension_score × dimension_weight) / 100"
+    "scoring_formula": "(D1*0.25 + D2*0.20 + D3*0.20 + D4*0.10 + D5*0.15 + D6*0.10) / 4 * 100 = percentage (0-100). For pure troubleshooting/Q&A with no carousel produced, score D4 as N/A and redistribute its 0.10 weight equally across D1-D3."
   },
   "assertion_tests": [
     {
       "id": "assert_001",
-      "dimension": "Evidence-Based Recommendations",
-      "assertion": "Output should reference 2026 carousel engagement benchmark of 6.60% when discussing overall performance",
+      "dimension": "Slide-Ready Deliverable",
+      "assertion": "Output contains actual slide-by-slide carousel copy on the user's topic, not just advice about how to make one",
       "pass_conditions": [
-        "Contains phrase like '6.60% average' or '6.60% engagement rate'",
-        "Or references 'carousel engagement rate' with specific percentage from 2026 data"
+        "Provides a headline (and usually body) for each slide",
+        "Content is about the user's stated subject",
+        "User could build it without writing the content themselves"
       ],
       "fail_conditions": [
-        "No mention of specific engagement rate benchmark",
-        "References outdated data (2024 or earlier)"
+        "Only general guidance / a how-to lecture with no concrete slide copy",
+        "Slides are about LinkedIn/carousel mechanics instead of the user's topic"
       ]
     },
     {
       "id": "assert_002",
-      "dimension": "Evidence-Based Recommendations",
-      "assertion": "Output should explain why 7-slide carousels perform best with reference to 18% improvement metric",
+      "dimension": "Hook & Narrative Quality",
+      "assertion": "Slide 1 hook is specific to the topic and promises value, not a generic label",
       "pass_conditions": [
-        "Mentions '7 slides' as optimal",
-        "References '18% better' or similar performance comparison",
-        "Explains reasoning (attention span, depth, etc.)"
+        "Hook references the actual topic/angle",
+        "Promises a specific payoff, poses a real question, or makes a pointed claim"
       ],
       "fail_conditions": [
-        "No mention of optimal slide count",
-        "Suggests slide count without evidence",
-        "Contradicts evidence (e.g., suggests 12+ slides as optimal)"
+        "Generic hook like 'Tips for success' or 'Things you should know'",
+        "Hook is just the topic title with a swipe arrow"
       ]
     },
     {
       "id": "assert_003",
-      "dimension": "Actionable Specificity",
-      "assertion": "Output should recommend specific dimensions (1080 x 1350px portrait) with explanation",
+      "dimension": "Topical Substance & Specificity",
+      "assertion": "Content uses the user's real examples, story, numbers, or point of view",
       "pass_conditions": [
-        "Provides exact dimensions: 1080 × 1350px OR 1080x1350px",
-        "Identifies as 'portrait' or '4:5 aspect ratio'",
-        "Explains why (mobile engagement, takes most space, etc.)"
+        "Specific details from the user's input appear in the slides",
+        "Claims are concrete and tied to the user's experience, not truisms"
       ],
       "fail_conditions": [
-        "Vague language like 'use portrait orientation' without dimensions",
-        "Recommends landscape (wrong)",
-        "No mention of dimensions at all"
+        "Generic advice that ignores what the user shared",
+        "No specifics; could apply to anyone on any topic"
       ]
     },
     {
       "id": "assert_004",
-      "dimension": "Actionable Specificity",
-      "assertion": "Output should specify maximum words per slide (30 words max)",
+      "dimension": "Personalization & Voice",
+      "assertion": "Voice and target audience match what the user asked for",
       "pass_conditions": [
-        "States '30 words' or '30-word maximum'",
-        "Explains 5-second rule or similar rationale",
-        "Provides guidance on what to do if exceeding (split slides)"
+        "Tone reflects the user's requested style (or a stated assumption about it)",
+        "Content is pitched at the audience the user named"
       ],
       "fail_conditions": [
-        "Vague: 'keep text short' without number",
-        "Wrong number (e.g., '50 words')",
-        "No mention of text density guidelines"
+        "Default corporate voice regardless of the user's request",
+        "Audience mismatch (e.g. beginner content for an expert audience)"
       ]
     },
     {
       "id": "assert_005",
-      "dimension": "Content-Type Matching",
-      "assertion": "Output should tailor guidance differently for framework vs. contrarian vs. narrative carousels",
+      "dimension": "Discovery & Fit",
+      "assertion": "A discovery question was asked, or an explicit assumption was stated, before drafting from a thin brief",
       "pass_conditions": [
-        "When user provides content type, suggests matching narrative structure",
-        "Framework carousels: emphasizes named, reusable, saveable",
-        "Contrarian carousels: emphasizes data backing, comment-driving",
-        "Narrative carousels: emphasizes authenticity, relatable lessons"
+        "Asks about topic, credibility, specifics, audience, voice, or goal before generating",
+        "Or, when moving fast, states assumptions and invites correction"
       ],
       "fail_conditions": [
-        "Same generic advice regardless of content type",
-        "Doesn't acknowledge content type differences",
-        "Wrong structure recommended for content type"
+        "Jumps straight to a generic deck from a one-line prompt with no questions and no stated assumptions"
       ]
     },
     {
       "id": "assert_006",
-      "dimension": "Problem Diagnosis",
-      "assertion": "When user reports low engagement, output should identify weak hook as potential primary cause",
+      "dimension": "Silent Craft Adherence",
+      "assertion": "Carousel quietly follows format best practices (5-10 slides ~7, ~30 words/slide, one idea each)",
       "pass_conditions": [
-        "Mentions 'hook' in diagnosis of low engagement",
-        "References 'hook determines 80% of performance' or similar",
-        "Offers specific hook rewrites as solution",
-        "Explains swipe-earning formula"
+        "Slide count in 5-10 range",
+        "Slides are tight, not text walls",
+        "One idea per slide"
       ],
       "fail_conditions": [
-        "No mention of hook in low-engagement diagnosis",
-        "Blames only secondary factors (design, timing) without mentioning hook",
-        "Hook mentioned but dismissed as non-critical"
+        "Text walls, 15+ slides, or multiple ideas crammed per slide"
       ]
     },
     {
       "id": "assert_007",
-      "dimension": "Problem Diagnosis",
-      "assertion": "When user reports text wall issue, output should recommend splitting slides and reference 5-second rule",
+      "dimension": "Hook & Narrative Quality",
+      "assertion": "Deck has one clear idea per slide and builds to a payoff",
       "pass_conditions": [
-        "Identifies text density as problem",
-        "References '5-second rule' or similar principle",
-        "Recommends splitting content across more slides",
-        "Explains algorithmic impact (dwell time, completion rate)"
+        "Logical progression across slides",
+        "Ends with a conclusion/lesson, not an abrupt stop"
       ],
       "fail_conditions": [
-        "No mention of text density as issue",
-        "Suggests condensing text instead of splitting",
-        "No explanation of why it matters (algorithm impact)"
+        "Disconnected points with no arc",
+        "No payoff or resolution"
       ]
     },
     {
       "id": "assert_008",
-      "dimension": "Workflow Clarity",
-      "assertion": "Output should provide clear step-by-step LinkedIn upload process",
+      "dimension": "Personalization & Voice",
+      "assertion": "Final slide has a clear CTA tied to the user's stated goal",
       "pass_conditions": [
-        "Step 1: Click 'Start a post'",
-        "Step 2: Click document/+ icon",
-        "Step 3: Upload PDF",
-        "Step 4: Add title",
-        "Step 5: Write caption",
-        "Step 6: Post"
+        "Explicit call to action (comment, save, follow, DM, click)",
+        "CTA serves the goal the user named (authority, leads, debate, etc.)"
       ],
       "fail_conditions": [
-        "Workflow missing or out of order",
-        "Significant steps omitted",
-        "Instructions unclear or contradictory"
+        "No CTA, or a generic 'thanks for reading'",
+        "CTA unrelated to the user's goal"
       ]
     },
     {
       "id": "assert_009",
-      "dimension": "Workflow Clarity",
-      "assertion": "Output should recommend Tuesday-Wednesday and 10 AM-12 PM local time for posting",
+      "dimension": "Slide-Ready Deliverable",
+      "assertion": "A ready-to-use, on-topic caption is provided",
       "pass_conditions": [
-        "Mentions Tuesday OR Wednesday (or both)",
-        "Mentions '10 AM' to '12 PM' OR '10-12' time range",
-        "Explains reasoning (peak professional browsing, etc.)"
+        "Caption is written out, not just described",
+        "Caption matches the carousel's topic and tone"
       ],
       "fail_conditions": [
-        "Recommends wrong timing (Monday, Friday, evening)",
-        "No specific timing provided",
-        "Contradicts research (e.g., 'post whenever you want')"
+        "No caption, or only a formula with no actual text"
       ]
     },
     {
       "id": "assert_010",
-      "dimension": "Evidence-Based Recommendations",
-      "assertion": "Output should emphasize saves as most valuable metric (5x value of likes)",
+      "dimension": "Topical Substance & Specificity",
+      "assertion": "For troubleshooting sessions, diagnosis addresses the user's ACTUAL content, not generic rules",
       "pass_conditions": [
-        "Mentions 'saves' as primary metric to track",
-        "References 'saves are 5x more valuable' or similar",
-        "Explains why saves matter (people bookmarking for reference)",
-        "Lists metrics in priority order (saves first)"
+        "References the specifics the user described (their hook, their slides, their numbers)",
+        "Gives targeted fixes for their case"
       ],
       "fail_conditions": [
-        "Emphasizes likes or comments as primary metric",
-        "No mention of saves",
-        "Treats all engagement equally"
-      ]
+        "Recites general best-practice rules without engaging with the user's specific post"
+      ],
+      "applies_when": "Only score for troubleshooting/diagnosis prompts."
     },
     {
       "id": "assert_011",
-      "dimension": "Actionable Specificity",
-      "assertion": "When discussing fonts, output should recommend 2 fonts max with minimum sizes",
+      "dimension": "Silent Craft Adherence",
+      "assertion": "For direct design/timing questions, the specific answer is given concisely without unsolicited stat-padding",
       "pass_conditions": [
-        "Recommends '2 fonts' or 'two fonts max'",
-        "Specifies '24px minimum' for body text",
-        "Specifies '36px' or higher for headlines",
-        "Explains consistency principle"
+        "Answers the actual question (e.g. dimensions, export, timing)",
+        "Concise; does not pad with unrequested benchmarks or meta-lectures"
       ],
       "fail_conditions": [
-        "Suggests 3+ fonts",
-        "No font size guidance",
-        "Font sizes too small (e.g., '18px' for body)",
-        "No consistency principle mentioned"
-      ]
+        "Buries the answer in a wall of engagement statistics",
+        "Fails to actually answer the question asked"
+      ],
+      "applies_when": "Only score for direct design/technical/timing questions."
     },
     {
-      "id": "assert_012",
-      "dimension": "Content-Type Matching",
-      "assertion": "Output should explain that frameworks are saveable content while contrarian content drives comments",
+      "id": "assert_013",
+      "dimension": "Silent Craft Adherence",
+      "assertion": "ANTI-PATTERN: output does NOT quote engagement benchmarks/meta-statistics at the user unprompted",
+      "is_anti_pattern": true,
       "pass_conditions": [
-        "Framework carousels: 'people save to reference later'",
-        "Contrarian carousels: 'drives comment engagement'",
-        "Personal narratives: 'authority + relatability'",
-        "Different save/comment rates by type"
+        "No unsolicited '6.60%', '18% better', '5x more valuable', '3.4x reach', etc. recited to the user",
+        "Research is used to shape the craft, not displayed as content"
       ],
       "fail_conditions": [
-        "No distinction between content types in engagement outcomes",
-        "Suggests all types drive same engagement"
+        "Lectures the user with carousel engagement statistics they did not ask for",
+        "Pads the deliverable with meta-commentary about carousel performance"
       ]
     }
   ],
   "evaluation_notes": {
-    "what_passes_means": "Output demonstrates that the skill is providing high-quality, evidence-based, specific guidance grounded in 2026 research with clear workflows tailored to different carousel types.",
-    "what_fails_means": "Output relies on generic advice, lacks specific metrics/benchmarks, doesn't tailor to content type, or provides incomplete workflows.",
+    "what_passes_means": "The skill delivered a specific, voice-matched, ready-to-build carousel about the user's actual topic, after fitting it to them, while quietly applying format best practices.",
+    "what_fails_means": "The output drifted into generic carousel/LinkedIn meta-advice, ignored the user's topic or voice, skipped discovery, OR recited engagement statistics instead of producing substance.",
     "typical_issues": [
-      "Generic advice without specifics (loses points on Actionable Specificity)",
-      "No reference to 2026 research benchmarks (loses points on Evidence-Based)",
-      "Same guidance for all content types (loses points on Content-Type Matching)",
-      "Missing steps in workflows (loses points on Workflow Clarity)",
-      "Misidentifies root cause when troubleshooting (loses points on Problem Diagnosis)"
+      "Generic filler that could apply to any topic (loses Topical Substance)",
+      "Reciting 2026 benchmarks at the user instead of using them silently (loses Silent Craft Adherence; fails A013)",
+      "Skipping discovery and producing a template deck (loses Discovery & Fit and Personalization)",
+      "Giving advice about making a carousel instead of writing the carousel (loses Slide-Ready Deliverable)",
+      "Weak, generic hook not tied to the topic (loses Hook & Narrative Quality)"
     ],
     "how_to_interpret_scores": {
-      "90-100": "Excellent: Comprehensive, specific, data-driven guidance with tailored workflows and problem diagnosis",
-      "80-89": "Good: Specific recommendations with evidence; may lack some depth in tailoring or examples",
-      "70-79": "Acceptable: Addresses key areas; some generic language or missing specifics in certain dimensions",
-      "60-69": "Below Threshold: Lacks evidence, specificity, or tailoring; may have incomplete workflows",
-      "Below 60": "Poor: Fails to meet multiple criteria; doesn't use skill effectively"
+      "90-100": "Pass: specific, personalized, ready-to-build carousel on the user's topic; craft applied invisibly",
+      "80-89": "Near threshold: good content but somewhat generic, thin on the user's specifics, or missing a clean deliverable; revise and retry",
+      "70-79": "Below threshold: on-topic but vague, weak hook, or under-personalized",
+      "60-69": "Well below: drifts toward generic advice, little personalization, or thin substance",
+      "Below 60": "Poor: off-topic, stat-padded, or no real carousel content produced"
     }
   }
 }

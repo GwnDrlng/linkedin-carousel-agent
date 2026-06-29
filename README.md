@@ -1,6 +1,8 @@
 # LinkedIn Carousel Agent
 
-A Claude skill for creating high-performing LinkedIn carousel posts based on 2026 engagement research — with a built-in self-evaluation and auto-retry loop that runs after every session without prompting.
+A Claude skill that turns **any topic you give it** into a finished, ready-to-build LinkedIn carousel — actual slide-by-slide copy in your voice, ready to drop into Canva. It runs a short discovery interview first so the content is genuinely yours, then writes the slides. A built-in self-evaluation and auto-retry loop runs after every session without prompting.
+
+**The deliverable is a carousel about your topic — not a carousel about how carousels work.** The 2026 engagement research lives under the hood as craft knowledge that shapes *how* the slides are written (sharp hook, tight copy, ~7 slides). It is never quoted back at you unless you ask.
 
 ## How It Works
 
@@ -9,9 +11,11 @@ Every session follows this flow:
 ```
 User prompt
     ↓
-Carousel guidance (strategy, slides, design, posting)
+Discovery interview (topic, your expertise, specifics, audience, voice, goal)
     ↓
-Self-evaluation — scored on 5 dimensions (0–4 pts each)
+Carousel written for YOUR topic (slide-by-slide copy + caption)
+    ↓
+Self-evaluation — scored on 6 dimensions (75% content / 25% silent craft)
     ↓
 Score ≥ 90%? ──Yes──→ Done ✓
     ↓ No
@@ -24,7 +28,7 @@ Score ≥ 90%? ──Yes──→ Done ✓
 ⚠️ Manual review flagged — stops and waits for input
 ```
 
-Claude scores itself after every session, revises once if below 90%, and flags for manual review if it doesn't reach 90% after two attempts. No prompting required.
+Claude interviews you briefly, writes the carousel for your subject, then scores its own output on whether *that carousel* is specific, personalized, and well-crafted — revising once if below 90% and flagging for manual review if it still falls short after two attempts. No prompting required.
 
 ## What the Skill Covers
 
@@ -55,17 +59,17 @@ Trigger this skill when you want to:
 ## Inside This Repo
 
 ### Main Skill File
-- `SKILL.md` - Complete skill guidance including the self-evaluation and retry loop
-  - 7-part workflow from strategy through publication
-  - Evidence-based best practices from 2026 research
+- `SKILL.md` - Complete skill guidance including the discovery interview, self-evaluation, and retry loop
+  - Discovery interview that personalizes the carousel to you before drafting
+  - 7-part craft workflow from strategy through publication (used silently to shape the slides)
   - Common mistakes and how to fix them
   - Content templates for 5 different carousel types
-  - Self-evaluation rubric and retry loop instructions
+  - Content-first self-evaluation rubric and retry loop instructions
 
 ### Evaluation Framework (`linkedin_carousel_eval/`)
 - `evaluation-guide.md` - How to interpret scores, run manual evals, and use results to improve the skill
-- `grading-rubric.json` - Machine-readable rubric: 5 dimensions, weights, score levels, and 12 assertion tests
-- `test-cases.json` - 10 test cases covering creation, design, troubleshooting, posting, and iteration
+- `grading-rubric.json` - Machine-readable rubric: 6 content-first dimensions (75% content / 25% craft), score levels, and 12 assertion tests (including an anti-stat-recitation check)
+- `test-cases.json` - 11 test cases covering content creation (incl. a non-business topic), design/timing Q&A, deck review, troubleshooting, and a discovery-first / anti-stat-dump guard
 
 ### Supporting References (`references/`)
 - `quick-reference.md` - 60-second summary with checklists and formulas
@@ -74,26 +78,28 @@ Trigger this skill when you want to:
 
 ## Evaluation Dimensions
 
-After every session, Claude scores its own output across 5 dimensions:
+After every session, Claude scores its own output across 6 dimensions. **Content quality is 75% of the score; silent craft + discovery is 25%.** The eval grades the carousel produced *for your topic* — it does **not** reward (and actively penalizes) reciting engagement statistics at you.
 
 | Dimension | Weight | What it measures |
 |---|---|---|
-| Evidence-Based Recommendations | 25% | Cites 2026 research data; explains why recommendations work |
-| Actionable Specificity | 25% | Specific numbers (px, words, timing) vs. vague advice |
-| Content-Type Matching | 20% | Tailors guidance to framework vs. narrative vs. contrarian |
-| Problem Diagnosis & Root Cause | 15% | Identifies root causes, not just symptoms (troubleshooting sessions) |
-| Workflow Clarity & Completeness | 15% | Step-by-step with tools, checkpoints, and sequencing |
+| Topical Substance & Specificity | 25% | Real, save-worthy content on YOUR topic — not generic filler |
+| Hook & Narrative Quality | 20% | Swipe-earning hook tied to the topic; coherent arc to a payoff |
+| Personalization & Voice | 20% | Built from your audience, expertise, story, and voice |
+| Slide-Ready Deliverable | 10% | Actual paste-able slide copy + caption, not advice about making one |
+| Silent Craft Adherence | 15% | Applies format best practices invisibly — no stat-padding |
+| Discovery & Fit | 10% | Ran the discovery interview (or stated assumptions) before drafting |
 
-**Target:** 90% — Claude auto-retries once if it falls below this
-**Floor:** 70% overall with all dimensions ≥ 2.0 — below this indicates a fundamental skill issue requiring manual review of `SKILL.md`
+**Pass threshold:** 90% — Claude auto-retries once if it falls below this, and flags for manual review if it fails to reach 90% after two attempts.
 
-## Key Stats (2026 Data)
+## Under the Hood (Internal Craft — Not Shown to You)
 
-- **Carousel engagement rate**: 6.60% average (3.4x more reach than single posts)
-- **Ideal slide count**: 7 slides (18% better than other lengths)
-- **Optimal dwell time**: 15-20 seconds
-- **Best timing**: Tuesday-Wednesday, 10 AM-12 PM local time
-- **Most valuable metric**: Saves (5x more valuable than likes)
+These figures shape *how* the skill writes your slides. They are never quoted back to you unless you ask:
+
+- Ideal slide count ~7 (range 5–10)
+- ~30 words max per slide; one idea per slide
+- Portrait 1080 × 1350px, 2 fonts / 3 colors, high contrast
+- Strong hook on slide 1; clear CTA on the last
+- Post timing and metric priorities for when you ask about posting/performance
 
 ## Quick Start
 
@@ -231,11 +237,11 @@ See `research-summary.md` for complete citations and data.
 
 The evaluation framework is designed to surface where the skill falls short. If a dimension consistently scores below 3:
 
-1. **Evidence-Based** — add newer or more specific research citations to `SKILL.md`
-2. **Actionable Specificity** — add missing specs (dimensions, word counts, timing) where the output was vague
-3. **Content-Type Matching** — expand the type-specific playbooks in the Appendix
-4. **Problem Diagnosis** — add more troubleshooting scenarios to the common mistakes section
-5. **Workflow Clarity** — add numbered steps or checkpoints to the relevant part
+1. **Topical Substance** — sharpen the discovery prompts so the skill pulls the user's real material; reinforce "use their specifics"
+2. **Hook & Narrative** — expand the hook formulas and narrative-arc templates in `SKILL.md` Part 1
+3. **Personalization & Voice** — make the discovery interview more pointed about audience and voice
+4. **Silent Craft Adherence** — reinforce the "internal-only, never recite the research" rule
+5. **Discovery & Fit** — make the discovery step earlier and clearer in the workflow
 
 Re-run the affected test cases from `test-cases.json` after any update to verify improvement.
 
@@ -243,7 +249,7 @@ Re-run the affected test cases from `test-cases.json` after any update to verify
 
 This skill is based on 2026 LinkedIn research. As the algorithm evolves:
 - Track saves, dwell time, and engagement rate against your own carousels
-- Run the 10 test cases periodically to catch skill drift
+- Run the 11 test cases periodically to catch skill drift
 - Update `SKILL.md` and `research-summary.md` with new findings
 
 ---
