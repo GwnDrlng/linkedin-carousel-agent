@@ -1,0 +1,12 @@
+{
+  "name": "linkedin-carousel-agent",
+  "description": "LinkedIn carousel creator skill plus its independent evaluator agent.",
+  "owner": { "name": "GwnDrlng" },
+  "plugins": [
+    {
+      "name": "linkedin-carousel",
+      "source": "./plugins/linkedin-carousel",
+      "description": "Turns any topic into finished, slide-by-slide LinkedIn carousel copy, then independently grades it."
+    }
+  ]
+}
