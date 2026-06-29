@@ -497,6 +497,22 @@ Spawn the **`carousel-evaluator`** subagent (via the Agent tool, `subagent_type:
 
 Do **not** pass your own reasoning, justifications, or a suggested score. The evaluator reads the authoritative rubric (`linkedin_carousel_eval/grading-rubric.json`), scores blind, and returns a scorecard with a pass/fail verdict and specific gaps. Relay its scorecard to the user verbatim — do not edit, soften, or re-score it yourself.
 
+### Fallback: if the evaluator agent isn't available
+
+This skill is portable. When it runs outside a Claude Code project context, the `carousel-evaluator` subagent (and the Agent tool that spawns it) may not exist. If dispatch isn't available:
+
+1. **Prefer a real second set of eyes.** Open a **fresh, separate session/chat** with no memory of how you built the carousel, paste in the brief + the output + `linkedin_carousel_eval/grading-rubric.json` (or `.claude/agents/carousel-evaluator.md`), and have that session score it. This preserves the independence that makes the score trustworthy.
+2. **If that's not possible, self-score — but say so.** Apply the rubric as a deliberate critic pass and label the result clearly:
+
+   ```
+   ⚠️ Self-scored (no independent evaluator available)
+   Treat this score as a sanity check, not an independent verdict.
+   ```
+
+   When self-scoring, grade only what is literally on the page — give yourself zero credit for intent — and be harder on yourself than feels comfortable, since this is exactly the biased setup the separate evaluator exists to avoid.
+
+The retry loop below works the same way in fallback mode; just note that "re-dispatch to a fresh evaluator" becomes "re-run the fresh-session (or labeled self-) evaluation."
+
 ### What you'll be judged on (so write to this — but never grade it yourself)
 
 Content is 75% of the score, silent craft + discovery is 25%:
