@@ -1,0 +1,269 @@
+{
+  "test_cases": [
+    {
+      "id": "carousel_001",
+      "name": "Basic Framework Carousel Creation",
+      "description": "User wants to create a carousel about a business framework they use",
+      "prompt": "Help me create a LinkedIn carousel about the 5-step process I use to evaluate SaaS tools for my team. The goal is to build authority and get people to save it for reference.",
+      "expected_outputs": [
+        "Should suggest framework-based narrative structure",
+        "Should ask clarifying questions about: the 5 steps, target audience, desired CTA",
+        "Should provide slide outline (7 slides optimal)",
+        "Should include hook formula recommendation",
+        "Should reference design specs (1080x1350px portrait)",
+        "Should explain why this content type drives saves",
+        "Should provide caption formula matching the framework approach"
+      ],
+      "success_criteria": [
+        "Provides concrete slide-by-slide outline with suggested headlines",
+        "Hooks are specific and promise clear value",
+        "References 2026 engagement data (frameworks are saveable content type)",
+        "Includes step count guidance (5-10 slides, 7 optimal)",
+        "Mentions mobile-first design considerations",
+        "Provides export/posting workflow"
+      ]
+    },
+    {
+      "id": "carousel_002",
+      "name": "Contrarian Argument Carousel",
+      "description": "User wants to create a contrarian carousel challenging conventional wisdom",
+      "prompt": "I want to post a LinkedIn carousel arguing that daily posting actually hurts engagement, not helps it. How do I structure this to get people commenting and engaging?",
+      "expected_outputs": [
+        "Should suggest contrarian/argument-based narrative structure",
+        "Should explain why controversial content drives comments",
+        "Should provide hook formula for contradiction/challenge",
+        "Should include data-backed approach (stats, evidence)",
+        "Should warn about avoiding engagement bait vs substance",
+        "Should provide slide structure that builds the argument progressively",
+        "Should reference algorithm signals for comment-driving content"
+      ],
+      "success_criteria": [
+        "Provides specific structure: Claim → Evidence → Counter-argument → Data → Implication",
+        "Includes evidence-based arguments (references research data)",
+        "Hook is provocative but backed by substance",
+        "Explains why this content type drives comments (high-engagement signal)",
+        "Provides checklist for avoiding 'engagement bait' feeling",
+        "Includes CTA designed for comments, not just saves"
+      ]
+    },
+    {
+      "id": "carousel_003",
+      "name": "Personal Narrative Carousel",
+      "description": "User wants to share a personal story with professional lessons",
+      "prompt": "I left a $200K job to start a startup. I want to create a carousel about the unexpected lessons I learned. Will this format work well, and how should I structure it?",
+      "expected_outputs": [
+        "Should confirm personal narrative is high-engagement format",
+        "Should provide 7-slide structure for narrative arc",
+        "Should explain how to extract universal lessons from personal story",
+        "Should include hook formula for surprising outcome",
+        "Should address authenticity and relatability",
+        "Should provide design guidance for narrative flow (visual progression)",
+        "Should include engagement metrics for this content type"
+      ],
+      "success_criteria": [
+        "Provides narrative arc: Hook (outcome) → Story (2-4 slides) → Insight → Application → CTA",
+        "Explains how to make personal lessons generalizable (not just one-off story)",
+        "Includes hook formula emphasizing surprising outcome",
+        "References authenticity as signal (algorithm favors genuine content)",
+        "Slide count guidance appropriate for narrative (6-8 slides typical)",
+        "Design advice on visual consistency for story progression"
+      ]
+    },
+    {
+      "id": "carousel_004",
+      "name": "Design & Technical Specifications",
+      "description": "User has content outline and needs technical guidance for design",
+      "prompt": "I've outlined my carousel but I'm using Canva. What dimensions should I use, and what's the right way to export it for LinkedIn? Any design rules I should follow?",
+      "expected_outputs": [
+        "Should recommend 1080 x 1350px (portrait, 4:5 ratio) with explanation",
+        "Should explain why portrait is optimal (mobile engagement)",
+        "Should provide font sizing rules (24px+ body, 36px+ headlines)",
+        "Should explain color strategy (2 fonts, 3 colors max)",
+        "Should provide export checklist (PDF Standard, not PDF Print)",
+        "Should reference mobile readability (67% traffic from mobile)",
+        "Should include contrast/high-visibility requirements"
+      ],
+      "success_criteria": [
+        "Recommends portrait (1080x1350) with specific reason (mobile engagement, 60%+ mobile users)",
+        "Explains why portrait > square > landscape by engagement data",
+        "Provides font sizing minimums backed by readability research",
+        "Color palette guidance (not rainbow, high contrast required)",
+        "Specific Canva export instructions (PDF Standard, not PDF Print)",
+        "Mobile testing guidance (test on actual phone, bright sunlight readability)",
+        "References 2026 performance data by dimension"
+      ]
+    },
+    {
+      "id": "carousel_005",
+      "name": "Pre-Publication Quality Check",
+      "description": "User has completed carousel and needs validation before posting",
+      "prompt": "I've created my carousel on the 5-C framework for positioning. Before I post, can you review it and tell me if it meets best practices? I have 9 slides, headlines are specific, and design is consistent.",
+      "expected_outputs": [
+        "Should ask for carousel content (headlines or description) to evaluate",
+        "Should provide comprehensive quality checklist",
+        "Should validate: slide count (5-10, 9 is good), headline specificity, design consistency",
+        "Should check: text density (30 words max per slide), narrative flow, hook strength",
+        "Should reference: mobile readiness, color contrast, one focal point per slide",
+        "Should evaluate CTA clarity and save-ability",
+        "Should provide pre-publication validation score/summary"
+      ],
+      "success_criteria": [
+        "Provides multi-section checklist (content, design, technical, engagement)",
+        "Evaluates headline specificity and scanability (2-second rule)",
+        "Checks slide count is optimal (9 is in sweet spot 5-10 range)",
+        "Validates one idea per slide",
+        "Confirms design consistency across slides",
+        "Checks if framework is named/reusable (saveable content)",
+        "Provides specific feedback, not generic approval",
+        "References engagement benchmarks (framework carousels get X% saves)"
+      ]
+    },
+    {
+      "id": "carousel_006",
+      "name": "Weak Hook Diagnosis",
+      "description": "User gets poor engagement and wants to understand why",
+      "prompt": "My carousel about LinkedIn tips only got 50 impressions. The first slide just says 'LinkedIn Tips for Success' with a swipe arrow. Why didn't it perform?",
+      "expected_outputs": [
+        "Should identify weak hook as primary problem (determines 80% of engagement)",
+        "Should explain genericness (not specific enough to earn swipe)",
+        "Should provide specific hook alternatives with data backing",
+        "Should reference 2026 performance data on generic vs specific",
+        "Should explain what makes a hook 'earn the swipe'",
+        "Should provide corrected hook formula examples",
+        "Should estimate improvement from hook optimization"
+      ],
+      "success_criteria": [
+        "Clearly identifies hook as #1 reason for failure",
+        "Explains why 'LinkedIn tips' doesn't work (not specific, no value promise)",
+        "Provides specific alternatives: '5 LinkedIn tactics that generated 500 leads' format",
+        "References research: specific claims beat generic advice",
+        "Explains swipe-earning formula (promise, stat, question, challenge)",
+        "Provides before/after examples",
+        "Mentions that hook determines ~80% of performance",
+        "Offers testing strategy (rewrite hook, repost, compare)"
+      ]
+    },
+    {
+      "id": "carousel_007",
+      "name": "Text Wall Problem Diagnosis",
+      "description": "User has content but slides are text-heavy",
+      "prompt": "I have great content about my sales methodology but each slide has about 100 words. People aren't finishing. What's wrong?",
+      "expected_outputs": [
+        "Should identify text density as major problem",
+        "Should reference 5-second rule (if slide takes >5 sec to read, users scroll)",
+        "Should recommend 30-word maximum per slide",
+        "Should explain algorithm impact (dwell time matters)",
+        "Should provide solution: split content across more slides",
+        "Should explain one-idea-per-slide principle",
+        "Should calculate new slide count needed for content density fix"
+      ],
+      "success_criteria": [
+        "Clearly identifies text walls as #1 reason for drop-off",
+        "References 5-second rule backed by 2026 research",
+        "Recommends maximum 30 words per slide (specific number, not vague)",
+        "Explains why this matters algorithmically (dwell time, completion rate)",
+        "Recommends splitting 100-word content across multiple slides",
+        "Provides specific restructuring guidance (one concept per slide)",
+        "Estimates new slide count (likely 10-12 slides from current 5-6)",
+        "References completion rate improvement if density reduced"
+      ]
+    },
+    {
+      "id": "carousel_008",
+      "name": "Timing & Posting Workflow",
+      "description": "User has completed carousel and ready to post",
+      "prompt": "My carousel is ready to go live on LinkedIn. When should I post it? What's the step-by-step process for uploading to LinkedIn?",
+      "expected_outputs": [
+        "Should recommend best timing (Tuesday-Wednesday, 10 AM-12 PM local)",
+        "Should explain timing rationale backed by 2026 data",
+        "Should provide step-by-step upload workflow",
+        "Should include caption formula",
+        "Should reference importance of first 30 minutes (engagement velocity)",
+        "Should provide post-publish monitoring strategy",
+        "Should explain metrics to track (saves most important)"
+      ],
+      "success_criteria": [
+        "Recommends Tuesday-Wednesday with supporting data",
+        "Recommends 10 AM-12 PM with specific reason (peak professional browsing)",
+        "Provides exact LinkedIn steps: Start post > Document > Upload PDF > Title > Caption > Post",
+        "Provides caption formula and example",
+        "Explains first-30-minutes critical window",
+        "Recommends commenting on own post if slow start (increases momentum)",
+        "Lists metrics in order of importance: Saves, Dwell time, Comments, Shares, Clicks",
+        "Mentions benchmark: 15-20 sec dwell time target"
+      ]
+    },
+    {
+      "id": "carousel_009",
+      "name": "Performance Iteration Strategy",
+      "description": "User wants to understand which metrics matter most and how to improve",
+      "prompt": "My carousel got 2% engagement rate. How does that compare to benchmarks? What should I focus on improving for my next carousel?",
+      "expected_outputs": [
+        "Should compare to 2026 benchmarks (6.60% average for carousels)",
+        "Should explain variance by audience size, content type, niche",
+        "Should identify save rate as most important metric (not likes)",
+        "Should explain algorithmic weight of metrics (saves 5x likes)",
+        "Should provide iteration strategy based on performance",
+        "Should ask diagnostic questions (hook strength, text density, CTA clarity)",
+        "Should reference framework-based content typically gets higher saves"
+      ],
+      "success_criteria": [
+        "Provides 2026 benchmark: 6.60% average for carousels (user at 2% = below average)",
+        "Explains that 2% could indicate: weak hook, text walls, unclear CTA, or niche factors",
+        "Emphasizes saves over likes (5x more valuable in algorithm)",
+        "References save rate benchmark: 5-10% of engaged users save top-performing carousels",
+        "Provides diagnostic questions: Was hook specific? Slide count? Text density? CTA clarity?",
+        "Suggests A/B testing (rewrite hook, reduce text, clarify CTA)",
+        "Explains framework vs narrative vs contrarian typically drives different save rates",
+        "Recommends testing on 4-8 carousel posts before changing strategy"
+      ]
+    },
+    {
+      "id": "carousel_010",
+      "name": "Format Rotation Guidance",
+      "description": "User wants to know if they should diversify beyond carousels",
+      "prompt": "I'm planning my LinkedIn content for next month. Should I post only carousels since they perform best, or mix in other formats?",
+      "expected_outputs": [
+        "Should explain format rotation strategy (don't repeat same format)",
+        "Should reference algorithm penalties for format repetition (up to 20% penalty)",
+        "Should explain performance hierarchy: Carousels > Text+Image > Video > Text-only",
+        "Should provide rotation strategy recommendation",
+        "Should explain when to use each format",
+        "Should reference format rotation engagement benefits (37% more follower growth)",
+        "Should balance consistency (algorithm learns patterns) with variety"
+      ],
+      "success_criteria": [
+        "Explains format rotation necessity (algorithm penalizes repetition up to 20%)",
+        "References 2026 data: carousels best, but rotation beats repetition",
+        "Provides suggested rotation: Carousel > Text+Image > Video > Poll (weekly)",
+        "Explains rationale for each format: Carousels for saves, Text+Image for reach, Video for trust",
+        "References benefits: 37% more follower growth with rotation, 28% more consistent visibility",
+        "Recommends: 1-2 core formats (carousels) + variety every week",
+        "Explains algorithm learning (prefers format discipline) vs engagement (rewards variety)",
+        "Provides sustainable content mix guidance"
+      ]
+    }
+  ],
+  "metadata": {
+    "skill_name": "linkedin-carousel-creator",
+    "total_test_cases": 10,
+    "coverage_areas": [
+      "Content Strategy (carousels 001, 002, 003)",
+      "Technical & Design (carousel 004)",
+      "Quality Assurance (carousel 005)",
+      "Troubleshooting (carousels 006, 007)",
+      "Publishing & Posting (carousel 008)",
+      "Performance & Iteration (carousels 009, 010)"
+    ],
+    "evaluation_focus": [
+      "Provides evidence-based recommendations from 2026 research",
+      "Gives specific, actionable guidance (not vague)",
+      "References concrete metrics and benchmarks",
+      "Explains 'why' behind recommendations",
+      "Offers concrete slide-by-slide structures",
+      "Addresses root causes of problems",
+      "Matches guidance to content type",
+      "Provides step-by-step workflows"
+    ]
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "grading_rubric": {
+    "dimensions": [
+      {
+        "name": "Evidence-Based Recommendations",
+        "weight": 25,
+        "description": "Does output reference 2026 research data and provide evidence for claims?",
+        "score_levels": {
+          "0": "No reference to data or research; claims are unsupported",
+          "1": "Mentions data but without specific numbers or unclear sourcing",
+          "2": "References specific 2026 benchmarks (e.g., 6.60% engagement rate, 7-slide optimal)",
+          "3": "Consistently cites research data with specific metrics; explains why recommendations are evidence-based",
+          "4": "Comprehensively grounds all recommendations in 2026 research; provides comparative data (e.g., carousels vs other formats); explains algorithmic reasoning"
+        },
+        "evaluation_questions": [
+          "Does output cite specific 2026 metrics (engagement rates, slide counts, timing data)?",
+          "Are claims backed by research from the skill's resources?",
+          "Does output explain why recommendations work (algorithm logic, user behavior)?",
+          "Are benchmarks provided for comparison (e.g., 6.60% is average, your 2% is below)?",
+          "Does output reference multiple data sources where appropriate?"
+        ]
+      },
+      {
+        "name": "Actionable Specificity",
+        "weight": 25,
+        "description": "Are recommendations specific and actionable, or vague and generic?",
+        "score_levels": {
+          "0": "Generic advice without specifics (e.g., 'make your hook catchy')",
+          "1": "Some specific guidance but missing details (e.g., mentions slide count without why)",
+          "2": "Specific in most areas (e.g., 'use 7 slides because 18% better than other lengths') but missing some details",
+          "3": "Specific and actionable across all areas (slide count, design specs, timing, hook formula)",
+          "4": "Detailed, step-by-step guidance with examples, templates, and decision trees; covers edge cases"
+        },
+        "evaluation_questions": [
+          "Are slide count recommendations specific (e.g., '7 is optimal, range 5-10')?",
+          "Are design specs provided (dimensions, fonts, colors)?",
+          "Is timing advice specific (day + time, not just 'post during business hours')?",
+          "Are hook formulas provided with examples?",
+          "Does output provide templates or worksheets?",
+          "Are action items numbered/clear (step-by-step workflow)?"
+        ]
+      },
+      {
+        "name": "Content-Type Matching",
+        "weight": 20,
+        "description": "Does output tailor guidance to the specific content type (framework, narrative, contrarian, etc.)?",
+        "score_levels": {
+          "0": "Generic guidance that doesn't account for content type differences",
+          "1": "Acknowledges content type but doesn't adapt guidance accordingly",
+          "2": "Adapts some guidance by content type (e.g., different hook for contrarian vs framework)",
+          "3": "Provides tailored narrative structure, hook formula, and design guidance by content type",
+          "4": "Provides complete content-type-specific playbooks: narrative arc, hook formula, slide structure, typical save rate, CTA approach"
+        },
+        "evaluation_questions": [
+          "Does output distinguish between frameworks, narratives, contrarian, data-driven, step-by-step?",
+          "Are narrative arcs different by content type?",
+          "Are hook formulas tailored (e.g., contrarian hook vs framework hook)?",
+          "Does output explain why each content type works (framework = saveable, contrarian = comments)?",
+          "Does output provide expected performance (save rate, engagement patterns) by type?"
+        ]
+      },
+      {
+        "name": "Problem Diagnosis & Root Cause",
+        "weight": 15,
+        "description": "When user reports poor performance, does output identify root causes?",
+        "score_levels": {
+          "0": "Doesn't diagnose problem or misidentifies cause",
+          "1": "Identifies one possible cause but doesn't explain why it matters",
+          "2": "Identifies primary cause (e.g., weak hook) and secondary causes (text walls) with explanations",
+          "3": "Comprehensive diagnosis: identifies root cause, explains algorithmic impact, provides evidence",
+          "4": "Diagnostic framework: asks clarifying questions, prioritizes causes by impact, provides testing strategy for verification"
+        },
+        "evaluation_questions": [
+          "When user reports low engagement, is root cause identified (hook, text density, CTA)?",
+          "Is diagnostic reasoning explained (why this causes the symptom)?",
+          "Is algorithmic impact explained (e.g., 'weak hook = algorithm doesn't distribute')?",
+          "Does output help user test hypothesis (A/B test, iteration strategy)?",
+          "Are secondary causes mentioned if primary cause isn't the issue?"
+        ]
+      },
+      {
+        "name": "Workflow Clarity & Completeness",
+        "weight": 15,
+        "description": "Are step-by-step workflows clear, complete, and easy to follow?",
+        "score_levels": {
+          "0": "No workflow provided or extremely vague",
+          "1": "Workflow provided but with missing steps or unclear sequencing",
+          "2": "Complete workflow with clear steps, but could use more detail or examples",
+          "3": "Step-by-step workflow with all major steps, clear sequencing, and supporting detail",
+          "4": "Comprehensive workflow with: numbered steps, examples, decision points, tools recommended, files needed, checkpoints"
+        },
+        "evaluation_questions": [
+          "Is workflow presented step-by-step (numbered or clear sequence)?",
+          "Are all major phases included (planning, content, design, technical, quality check, posting, tracking)?",
+          "Are tools recommended (Canva, Google Slides, etc.)?",
+          "Are checkpoints provided (pre-publication checklist)?",
+          "Is there an example or case study walkthrough?",
+          "Are decision points clear (choose one narrative arc, choose dimensions, etc.)?"
+        ]
+      }
+    ],
+    "overall_pass_threshold": 70,
+    "minimum_dimension_score": 2,
+    "scoring_formula": "Sum of (dimension_score × dimension_weight) / 100"
+  },
+  "assertion_tests": [
+    {
+      "id": "assert_001",
+      "dimension": "Evidence-Based Recommendations",
+      "assertion": "Output should reference 2026 carousel engagement benchmark of 6.60% when discussing overall performance",
+      "pass_conditions": [
+        "Contains phrase like '6.60% average' or '6.60% engagement rate'",
+        "Or references 'carousel engagement rate' with specific percentage from 2026 data"
+      ],
+      "fail_conditions": [
+        "No mention of specific engagement rate benchmark",
+        "References outdated data (2024 or earlier)"
+      ]
+    },
+    {
+      "id": "assert_002",
+      "dimension": "Evidence-Based Recommendations",
+      "assertion": "Output should explain why 7-slide carousels perform best with reference to 18% improvement metric",
+      "pass_conditions": [
+        "Mentions '7 slides' as optimal",
+        "References '18% better' or similar performance comparison",
+        "Explains reasoning (attention span, depth, etc.)"
+      ],
+      "fail_conditions": [
+        "No mention of optimal slide count",
+        "Suggests slide count without evidence",
+        "Contradicts evidence (e.g., suggests 12+ slides as optimal)"
+      ]
+    },
+    {
+      "id": "assert_003",
+      "dimension": "Actionable Specificity",
+      "assertion": "Output should recommend specific dimensions (1080 x 1350px portrait) with explanation",
+      "pass_conditions": [
+        "Provides exact dimensions: 1080 × 1350px OR 1080x1350px",
+        "Identifies as 'portrait' or '4:5 aspect ratio'",
+        "Explains why (mobile engagement, takes most space, etc.)"
+      ],
+      "fail_conditions": [
+        "Vague language like 'use portrait orientation' without dimensions",
+        "Recommends landscape (wrong)",
+        "No mention of dimensions at all"
+      ]
+    },
+    {
+      "id": "assert_004",
+      "dimension": "Actionable Specificity",
+      "assertion": "Output should specify maximum words per slide (30 words max)",
+      "pass_conditions": [
+        "States '30 words' or '30-word maximum'",
+        "Explains 5-second rule or similar rationale",
+        "Provides guidance on what to do if exceeding (split slides)"
+      ],
+      "fail_conditions": [
+        "Vague: 'keep text short' without number",
+        "Wrong number (e.g., '50 words')",
+        "No mention of text density guidelines"
+      ]
+    },
+    {
+      "id": "assert_005",
+      "dimension": "Content-Type Matching",
+      "assertion": "Output should tailor guidance differently for framework vs. contrarian vs. narrative carousels",
+      "pass_conditions": [
+        "When user provides content type, suggests matching narrative structure",
+        "Framework carousels: emphasizes named, reusable, saveable",
+        "Contrarian carousels: emphasizes data backing, comment-driving",
+        "Narrative carousels: emphasizes authenticity, relatable lessons"
+      ],
+      "fail_conditions": [
+        "Same generic advice regardless of content type",
+        "Doesn't acknowledge content type differences",
+        "Wrong structure recommended for content type"
+      ]
+    },
+    {
+      "id": "assert_006",
+      "dimension": "Problem Diagnosis",
+      "assertion": "When user reports low engagement, output should identify weak hook as potential primary cause",
+      "pass_conditions": [
+        "Mentions 'hook' in diagnosis of low engagement",
+        "References 'hook determines 80% of performance' or similar",
+        "Offers specific hook rewrites as solution",
+        "Explains swipe-earning formula"
+      ],
+      "fail_conditions": [
+        "No mention of hook in low-engagement diagnosis",
+        "Blames only secondary factors (design, timing) without mentioning hook",
+        "Hook mentioned but dismissed as non-critical"
+      ]
+    },
+    {
+      "id": "assert_007",
+      "dimension": "Problem Diagnosis",
+      "assertion": "When user reports text wall issue, output should recommend splitting slides and reference 5-second rule",
+      "pass_conditions": [
+        "Identifies text density as problem",
+        "References '5-second rule' or similar principle",
+        "Recommends splitting content across more slides",
+        "Explains algorithmic impact (dwell time, completion rate)"
+      ],
+      "fail_conditions": [
+        "No mention of text density as issue",
+        "Suggests condensing text instead of splitting",
+        "No explanation of why it matters (algorithm impact)"
+      ]
+    },
+    {
+      "id": "assert_008",
+      "dimension": "Workflow Clarity",
+      "assertion": "Output should provide clear step-by-step LinkedIn upload process",
+      "pass_conditions": [
+        "Step 1: Click 'Start a post'",
+        "Step 2: Click document/+ icon",
+        "Step 3: Upload PDF",
+        "Step 4: Add title",
+        "Step 5: Write caption",
+        "Step 6: Post"
+      ],
+      "fail_conditions": [
+        "Workflow missing or out of order",
+        "Significant steps omitted",
+        "Instructions unclear or contradictory"
+      ]
+    },
+    {
+      "id": "assert_009",
+      "dimension": "Workflow Clarity",
+      "assertion": "Output should recommend Tuesday-Wednesday and 10 AM-12 PM local time for posting",
+      "pass_conditions": [
+        "Mentions Tuesday OR Wednesday (or both)",
+        "Mentions '10 AM' to '12 PM' OR '10-12' time range",
+        "Explains reasoning (peak professional browsing, etc.)"
+      ],
+      "fail_conditions": [
+        "Recommends wrong timing (Monday, Friday, evening)",
+        "No specific timing provided",
+        "Contradicts research (e.g., 'post whenever you want')"
+      ]
+    },
+    {
+      "id": "assert_010",
+      "dimension": "Evidence-Based Recommendations",
+      "assertion": "Output should emphasize saves as most valuable metric (5x value of likes)",
+      "pass_conditions": [
+        "Mentions 'saves' as primary metric to track",
+        "References 'saves are 5x more valuable' or similar",
+        "Explains why saves matter (people bookmarking for reference)",
+        "Lists metrics in priority order (saves first)"
+      ],
+      "fail_conditions": [
+        "Emphasizes likes or comments as primary metric",
+        "No mention of saves",
+        "Treats all engagement equally"
+      ]
+    },
+    {
+      "id": "assert_011",
+      "dimension": "Actionable Specificity",
+      "assertion": "When discussing fonts, output should recommend 2 fonts max with minimum sizes",
+      "pass_conditions": [
+        "Recommends '2 fonts' or 'two fonts max'",
+        "Specifies '24px minimum' for body text",
+        "Specifies '36px' or higher for headlines",
+        "Explains consistency principle"
+      ],
+      "fail_conditions": [
+        "Suggests 3+ fonts",
+        "No font size guidance",
+        "Font sizes too small (e.g., '18px' for body)",
+        "No consistency principle mentioned"
+      ]
+    },
+    {
+      "id": "assert_012",
+      "dimension": "Content-Type Matching",
+      "assertion": "Output should explain that frameworks are saveable content while contrarian content drives comments",
+      "pass_conditions": [
+        "Framework carousels: 'people save to reference later'",
+        "Contrarian carousels: 'drives comment engagement'",
+        "Personal narratives: 'authority + relatability'",
+        "Different save/comment rates by type"
+      ],
+      "fail_conditions": [
+        "No distinction between content types in engagement outcomes",
+        "Suggests all types drive same engagement"
+      ]
+    }
+  ],
+  "evaluation_notes": {
+    "what_passes_means": "Output demonstrates that the skill is providing high-quality, evidence-based, specific guidance grounded in 2026 research with clear workflows tailored to different carousel types.",
+    "what_fails_means": "Output relies on generic advice, lacks specific metrics/benchmarks, doesn't tailor to content type, or provides incomplete workflows.",
+    "typical_issues": [
+      "Generic advice without specifics (loses points on Actionable Specificity)",
+      "No reference to 2026 research benchmarks (loses points on Evidence-Based)",
+      "Same guidance for all content types (loses points on Content-Type Matching)",
+      "Missing steps in workflows (loses points on Workflow Clarity)",
+      "Misidentifies root cause when troubleshooting (loses points on Problem Diagnosis)"
+    ],
+    "how_to_interpret_scores": {
+      "90-100": "Excellent: Comprehensive, specific, data-driven guidance with tailored workflows and problem diagnosis",
+      "80-89": "Good: Specific recommendations with evidence; may lack some depth in tailoring or examples",
+      "70-79": "Acceptable: Addresses key areas; some generic language or missing specifics in certain dimensions",
+      "60-69": "Below Threshold: Lacks evidence, specificity, or tailoring; may have incomplete workflows",
+      "Below 60": "Poor: Fails to meet multiple criteria; doesn't use skill effectively"
+    }
+  }
+}
