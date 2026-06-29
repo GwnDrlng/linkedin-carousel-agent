@@ -482,137 +482,60 @@ Good luck with your carousel. Remember: Carousels that get saved are the ones th
 
 ---
 
-## Required: Self-Evaluation (Run After Every Session)
+## Required: Independent Evaluation (Run After Every Session)
 
-After delivering a carousel (or carousel guidance), **always** run this self-evaluation without being asked. Score your own output and present the results to the user.
+**Do not grade your own work.** The agent that wrote the carousel is the worst judge of it — it knows what it *meant* and will quietly give itself credit for things that aren't on the page. To follow LLM-as-judge best practice, scoring is done by a **separate evaluator agent** that only sees the brief and the output.
 
-**What you are grading:** the quality of the carousel you produced *for the user's topic* — is it specific, in their voice, built from their material, and shaped well — **not** whether you recited LinkedIn research. Citing engagement statistics to the user earns *zero* credit here and is penalized under Craft (D5) when it crowds out substance.
+After delivering a carousel (or carousel guidance), **always** dispatch it to the independent evaluator without being asked, then relay the verdict and act on it.
 
-### How to Score
+### How to dispatch
 
-Content quality is 75% of the score (D1–D4); silent craft + discovery is 25% (D5–D6). Evaluate each dimension 0–4.
+Spawn the **`carousel-evaluator`** subagent (via the Agent tool, `subagent_type: "carousel-evaluator"`). Pass it two things and nothing else that could bias it:
 
-**1. Topical Substance & Specificity (25% weight)** — *content*
-- 0: Off-topic, or generic filler that could apply to anyone ("be consistent," "add value")
-- 1: On-topic but vague; no concrete detail the user actually provided
-- 2: On-topic with some specific detail
-- 3: Genuinely specific and substantive throughout; uses the user's real examples/numbers/claims
-- 4: Every slide earns its place with concrete, save-worthy substance unique to this topic
+1. **The original user brief** plus any discovery answers the user gave.
+2. **The full carousel you produced** (every slide's headline + body, the caption, and any surrounding guidance).
 
-**2. Hook & Narrative Quality (20% weight)** — *content*
-- 0: No real hook; slides are a disconnected list
-- 1: Weak/generic hook; loose structure
-- 2: Decent hook; coherent arc
-- 3: Specific, swipe-earning hook tied to the topic; each slide advances one idea toward a payoff
-- 4: Hook is sharp and original; arc builds tension/curiosity and lands a clear conclusion + CTA
+Do **not** pass your own reasoning, justifications, or a suggested score. The evaluator reads the authoritative rubric (`linkedin_carousel_eval/grading-rubric.json`), scores blind, and returns a scorecard with a pass/fail verdict and specific gaps. Relay its scorecard to the user verbatim — do not edit, soften, or re-score it yourself.
 
-**3. Personalization & Voice (20% weight)** — *content*
-- 0: Template output; ignores who the user is
-- 1: Minor nods to the user's input
-- 2: Reflects audience and goal; voice is plausible
-- 3: Clearly built from the discovery answers — right audience, right tone, the user's stories/POV
-- 4: Reads like the user wrote it; their voice, expertise, and specifics are unmistakable
+### What you'll be judged on (so write to this — but never grade it yourself)
 
-**4. Slide-Ready Deliverable (10% weight)** — *content*
-- 0: Only meta-advice about making a carousel; no actual slide copy
-- 1: Partial copy; lots of gaps the user must fill
-- 2: Full slide-by-slide copy but rough
-- 3: Clean headline + body per slide, plus a caption — paste-ready
-- 4: Paste-ready copy + light visual notes/CTA, genuinely buildable as-is
+Content is 75% of the score, silent craft + discovery is 25%:
 
-**5. Silent Craft Adherence (15% weight)** — *craft*
-- 0: Violates format (text walls, 15+ slides, no CTA) — OR lectures the user with engagement stats
-- 1: Some format issues, or volunteers stats/meta-commentary the user didn't ask for
-- 2: Mostly sound format; minimal padding
-- 3: Quietly follows best practices — ~5–10 slides (≈7), tight copy (~30 words/slide), one idea per slide, clear CTA — without reciting why
-- 4: Format is invisible-perfect; every craft rule applied, none of them explained at the user
+- **Topical Substance & Specificity (25%)** — real, save-worthy content on the user's topic, not generic filler
+- **Hook & Narrative Quality (20%)** — swipe-earning hook tied to the topic; arc to a payoff
+- **Personalization & Voice (20%)** — built from the user's audience, expertise, story, and voice
+- **Slide-Ready Deliverable (10%)** — paste-able slide copy + caption, not advice about making one
+- **Silent Craft Adherence (15%)** — format applied invisibly; **reciting engagement stats at the user is penalized**
+- **Discovery & Fit (10%)** — discovery questions asked (or assumptions stated) before drafting
 
-**6. Discovery & Fit (10% weight)** — *process*
-- 0: Generated immediately from a thin brief with no questions and no stated assumptions
-- 1: Asked little; output clearly under-informed
-- 2: Asked some questions or stated assumptions
-- 3: Ran a focused discovery round (topic, credibility, specifics, audience, voice, goal) before writing — or made explicit, sensible assumptions when the user wanted speed
-- 4: Discovery was efficient and visibly shaped the carousel; assumptions flagged for easy correction
+Pass threshold: **90%**, with every dimension ≥ 2.0. The full score levels and assertion tests live in `linkedin_carousel_eval/grading-rubric.json` — the evaluator's source of truth. You don't reproduce them here and you don't pre-judge; your job is to write well, dispatch honestly, and respond to the verdict.
 
-### Scoring Formula
+### Retry Loop (Required) — driven by the evaluator, not by you
 
-```
-Score = (D1 × 0.25) + (D2 × 0.20) + (D3 × 0.20) + (D4 × 0.10) + (D5 × 0.15) + (D6 × 0.10)
-Percentage = (Score / 4.0) × 100
-Pass threshold: 90% | All dimensions must score ≥ 2.0
-```
+The evaluator decides pass/fail. You react:
 
-For a pure troubleshooting/Q&A session where no carousel is produced (e.g. "why did my post flop?", "when should I post?"), score D1–D4 against the quality of your *diagnosis/answer for their specific situation*, and skip D4 (Slide-Ready) as N/A, redistributing its 10% across D1–D3.
+**If the evaluator returns PASS (≥ 90%, all dimensions ≥ 2.0):**
+→ Done. Relay its scorecard and stop.
 
-### Assertion Checks
+**If it returns FAIL on Attempt 1:**
+→ Relay the scorecard labeled `(Attempt 1 of 2)`.
+→ Revise the carousel, targeting every gap and required fix the evaluator named.
+→ **Re-dispatch the revised carousel to a fresh `carousel-evaluator`** (a new instance — do not argue with the first one or grade the fix yourself).
+→ Relay the new scorecard labeled `(Attempt 2 of 2)`, then apply the rule below.
 
-Check only the assertions relevant to this session. Note A013 is an **anti-pattern** — passing means you did NOT do it.
-
-| ID | Check | Pass condition |
-|----|-------|----------------|
-| A001 | Output contains actual slide-by-slide copy on the user's topic (not just advice) | ✓ / ✗ / N/A |
-| A002 | Hook (slide 1) is specific to the topic, not generic | ✓ / ✗ / N/A |
-| A003 | Content uses the user's real examples / story / numbers / POV | ✓ / ✗ / N/A |
-| A004 | Voice & audience match what the user asked for | ✓ / ✗ / N/A |
-| A005 | A discovery question was asked, or an explicit assumption stated, before drafting | ✓ / ✗ / N/A |
-| A006 | Slide count in 5–10 range (≈7) and copy is tight (~30 words/slide), applied silently | ✓ / ✗ / N/A |
-| A007 | One clear idea per slide; arc builds to a payoff | ✓ / ✗ / N/A |
-| A008 | Final slide has a clear CTA tied to the user's stated goal | ✓ / ✗ / N/A |
-| A009 | A ready-to-use caption was provided, on-topic | ✓ / ✗ / N/A |
-| A010 | (Troubleshooting) Diagnosis addresses the user's actual content, not generic rules | ✓ / ✗ / N/A |
-| A011 | (Design/timing Q) Specific answer given concisely, without unsolicited stat-padding | ✓ / ✗ / N/A |
-| A013 | **Anti-pattern:** did NOT quote engagement benchmarks/meta-stats at the user unprompted | ✓ / ✗ / N/A |
-
-### Output Format
-
-Present the eval as a compact scorecard:
-
-```
----
-📊 Carousel Eval (Attempt #N)
-Dimension                          Score  Weight  Points
-Topical Substance & Specificity     X/4    25%     X.XX
-Hook & Narrative Quality            X/4    20%     X.XX
-Personalization & Voice             X/4    20%     X.XX
-Slide-Ready Deliverable             X/4    10%     X.XX  (or N/A)
-Silent Craft Adherence              X/4    15%     X.XX
-Discovery & Fit                     X/4    10%     X.XX
-───────────────────────────────────────────────────────
-Overall: XX% [PASS ✓ / FAIL ✗]  (threshold: 90%)
-
-Assertions: A001 ✓  A002 ✓  A013 ✓  (only show relevant ones)
-
-Strengths: [1–2 sentences on what made the carousel good for THIS topic]
-Gaps: [1–2 sentences — be specific about what content was missing or generic]
----
-```
-
-### Retry Loop (Required)
-
-After scoring, follow this decision tree exactly:
-
-**If score ≥ 90% (Attempt 1 or 2):**
-→ Done. Present the scorecard and stop.
-
-**If score < 90% on Attempt 1:**
-→ Show the scorecard labeled `(Attempt 1 of 2)`
-→ Immediately revise the full response, targeting every gap listed
-→ Re-score the revised response
-→ Show the new scorecard labeled `(Attempt 2 of 2)`
-→ Then apply the Attempt 2 rule below
-
-**If score < 90% on Attempt 2:**
-→ Show the scorecard labeled `(Attempt 2 of 2 — Manual Review Required)`
-→ Add this flag below the scorecard:
+**If it returns FAIL on Attempt 2:**
+→ Relay the scorecard labeled `(Attempt 2 of 2 — Manual Review Required)` and add:
 
 ```
 ⚠️ Manual Review Required
-This response scored below 90% after two attempts.
-Gaps to address: [list the specific dimensions and assertions that still failed]
-Recommended action: Review the skill content for these areas and consider
-updating SKILL.md or the grading rubric.
+This carousel scored below 90% after two independent evaluations.
+Gaps that still failed: [the dimensions/assertions the evaluator flagged]
+Recommended action: review the brief with the user, or update SKILL.md /
+the grading rubric if the standard itself is off.
 ```
 
 → Do NOT attempt a third revision. Stop and wait for user input.
 
-**Tracking attempts:** Label each scorecard with its attempt number. Never run more than 2 revision cycles per session.
+**Rules:** Never grade your own output. Never overrule the evaluator's score. Each revision gets a fresh evaluator instance. Never run more than 2 revision cycles per session.
+
+> Single source of truth: the rubric lives in `linkedin_carousel_eval/grading-rubric.json` and the judge's instructions in `.claude/agents/carousel-evaluator.md`. Update those, not a copy here, when the standard changes.

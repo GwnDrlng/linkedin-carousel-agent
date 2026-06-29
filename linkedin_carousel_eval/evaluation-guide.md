@@ -2,6 +2,19 @@
 
 This guide explains how to evaluate whether the skill is doing its real job: **turning the user's topic into a strong, ready-to-build carousel for THEM** — not whether it can recite LinkedIn engagement research.
 
+## Who does the grading
+
+Scoring is done by a **separate evaluator agent** (`.claude/agents/carousel-evaluator.md`), not by the agent that wrote the carousel. The creator knows what it *meant* and will give itself credit for things that aren't on the page — so it never grades its own work. The independent evaluator receives only the **brief** and the **output**, reads this rubric (`grading-rubric.json`), and scores blind.
+
+The loop:
+
+1. **Creator** runs discovery and writes the carousel.
+2. **Creator** dispatches the brief + output to the `carousel-evaluator` subagent.
+3. **Evaluator** scores blind, returns a pass/fail scorecard with specific gaps.
+4. If it fails, the creator revises against the named gaps and re-submits to a **fresh** evaluator instance (max 2 cycles), then flags for manual review.
+
+A human can also run an evaluation manually using the same rubric below — useful for spot-checking the judge itself.
+
 ---
 
 ## What We're Actually Evaluating
