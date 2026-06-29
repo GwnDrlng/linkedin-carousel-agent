@@ -1,12 +1,12 @@
 # LinkedIn Carousel Agent
 
-A Claude skill that turns **any topic you give it** into a finished, ready-to-build LinkedIn carousel — actual slide-by-slide copy in your voice, ready to drop into Canva. It runs a short discovery interview first so the content is genuinely yours, then writes the slides. A built-in self-evaluation and auto-retry loop runs after every session without prompting.
+A Claude skill that turns **any topic you give it** into a finished, ready-to-build LinkedIn carousel — actual slide-by-slide copy in your voice, ready to drop into Canva. It runs a short discovery interview first so the content is genuinely yours, then writes the slides. A **separate evaluator agent** independently grades the result after every session, without prompting.
 
 **The deliverable is a carousel about your topic — not a carousel about how carousels work.** The 2026 engagement research lives under the hood as craft knowledge that shapes *how* the slides are written (sharp hook, tight copy, ~7 slides). It is never quoted back at you unless you ask.
 
 ## How It Works
 
-Every session follows this flow:
+The generator and the judge are **two separate agents** — the one that writes the carousel never grades its own work (that's the bias LLM-as-judge best practice exists to avoid). The independent `carousel-evaluator` only sees your brief and the output, and scores it blind against the rubric.
 
 ```
 User prompt
@@ -15,20 +15,21 @@ Discovery interview (topic, your expertise, specifics, audience, voice, goal)
     ↓
 Carousel written for YOUR topic (slide-by-slide copy + caption)
     ↓
-Self-evaluation — scored on 6 dimensions (75% content / 25% silent craft)
+Dispatch to INDEPENDENT carousel-evaluator agent
+  (sees only the brief + the output; scores blind on 6 dimensions, 75% content / 25% craft)
     ↓
-Score ≥ 90%? ──Yes──→ Done ✓
+PASS (≥ 90%, all dims ≥ 2.0)? ──Yes──→ Done ✓
     ↓ No
-Revise response targeting every gap (Attempt 2)
+Creator revises, targeting the evaluator's named gaps
     ↓
-Re-score
+Re-dispatch to a FRESH evaluator instance (Attempt 2)
     ↓
-Score ≥ 90%? ──Yes──→ Done ✓
+PASS? ──Yes──→ Done ✓
     ↓ No
 ⚠️ Manual review flagged — stops and waits for input
 ```
 
-Claude interviews you briefly, writes the carousel for your subject, then scores its own output on whether *that carousel* is specific, personalized, and well-crafted — revising once if below 90% and flagging for manual review if it still falls short after two attempts. No prompting required.
+The creator interviews you, writes the carousel for your subject, then hands it to the independent evaluator. The evaluator decides pass/fail; the creator reacts — revising once if it fails and re-submitting to a fresh judge, then flagging for manual review if it still falls short after two attempts. The creator never overrules the score.
 
 ## What the Skill Covers
 
@@ -58,13 +59,16 @@ Trigger this skill when you want to:
 
 ## Inside This Repo
 
-### Main Skill File
-- `SKILL.md` - Complete skill guidance including the discovery interview, self-evaluation, and retry loop
+### Main Skill File (the generator)
+- `SKILL.md` - Complete skill guidance including the discovery interview and the dispatch-to-evaluator retry loop
   - Discovery interview that personalizes the carousel to you before drafting
   - 7-part craft workflow from strategy through publication (used silently to shape the slides)
   - Common mistakes and how to fix them
   - Content templates for 5 different carousel types
-  - Content-first self-evaluation rubric and retry loop instructions
+  - Instructions to hand the output to the independent evaluator and act on its verdict
+
+### Independent Evaluator (`.claude/agents/`)
+- `carousel-evaluator.md` - A separate judge subagent. Sees only the brief + the carousel, scores it blind against the rubric, and returns a pass/fail scorecard with specific gaps. It does not write or revise carousels — keeping the creator and the grader cleanly separated.
 
 ### Evaluation Framework (`linkedin_carousel_eval/`)
 - `evaluation-guide.md` - How to interpret scores, run manual evals, and use results to improve the skill
@@ -78,7 +82,7 @@ Trigger this skill when you want to:
 
 ## Evaluation Dimensions
 
-After every session, Claude scores its own output across 6 dimensions. **Content quality is 75% of the score; silent craft + discovery is 25%.** The eval grades the carousel produced *for your topic* — it does **not** reward (and actively penalizes) reciting engagement statistics at you.
+After every session, the **independent `carousel-evaluator` agent** (not the creator) scores the output across 6 dimensions. **Content quality is 75% of the score; silent craft + discovery is 25%.** The eval grades the carousel produced *for your topic* — it does **not** reward (and actively penalizes) reciting engagement statistics at you.
 
 | Dimension | Weight | What it measures |
 |---|---|---|
