@@ -84,8 +84,8 @@ After every session, Claude scores its own output across 5 dimensions:
 | Problem Diagnosis & Root Cause | 15% | Identifies root causes, not just symptoms (troubleshooting sessions) |
 | Workflow Clarity & Completeness | 15% | Step-by-step with tools, checkpoints, and sequencing |
 
-**Pass threshold:** 70% overall, with all dimensions ≥ 2.0
-**Excellence threshold:** 90% (triggers auto-retry if not met)
+**Target:** 90% — Claude auto-retries once if it falls below this
+**Floor:** 70% overall with all dimensions ≥ 2.0 — below this indicates a fundamental skill issue requiring manual review of `SKILL.md`
 
 ## Key Stats (2026 Data)
 
