@@ -1,18 +1,40 @@
-# LinkedIn Carousel Creator Skill
+# LinkedIn Carousel Agent
 
-A comprehensive Claude skill for creating high-performing LinkedIn carousel posts based on 2026 engagement research and evidence-based best practices.
+A Claude skill for creating high-performing LinkedIn carousel posts based on 2026 engagement research — with a built-in self-evaluation and auto-retry loop that runs after every session without prompting.
 
-## What This Skill Does
+## How It Works
 
-This skill guides you through every step of carousel creation:
+Every session follows this flow:
 
-1. **Strategy & Planning** - Define your hook, choose narrative structure, outline content
-2. **Content Development** - Write headlines, structure information, avoid common mistakes
-3. **Design Specifications** - Technical requirements, dimensions, typography, color theory
+```
+User prompt
+    ↓
+Carousel guidance (strategy, slides, design, posting)
+    ↓
+Self-evaluation — scored on 5 dimensions (0–4 pts each)
+    ↓
+Score ≥ 90%? ──Yes──→ Done ✓
+    ↓ No
+Revise response targeting every gap (Attempt 2)
+    ↓
+Re-score
+    ↓
+Score ≥ 90%? ──Yes──→ Done ✓
+    ↓ No
+⚠️ Manual review flagged — stops and waits for input
+```
+
+Claude scores itself after every session, revises once if below 90%, and flags for manual review if it doesn't reach 90% after two attempts. No prompting required.
+
+## What the Skill Covers
+
+1. **Strategy & Planning** - Hook formulas, narrative structure, content type selection
+2. **Content Development** - Slide-by-slide outlines, text density rules, headline writing
+3. **Design Specifications** - Dimensions, typography, color, mobile readiness
 4. **Workflow** - Tools, export settings, file preparation
 5. **Quality Checks** - Pre-publication validation checklist
-6. **LinkedIn Posting** - Upload workflow, caption formula, timing optimization
-7. **Performance Tracking** - Metrics to monitor, iteration strategies
+6. **LinkedIn Posting** - Upload steps, caption formula, timing optimization
+7. **Performance Tracking** - Metrics, benchmarks, iteration strategies
 
 ## When to Use This Skill
 
@@ -30,19 +52,40 @@ Trigger this skill when you want to:
 - "Guide me through carousel creation for [topic]"
 - "Should this be a carousel or a text post?"
 
-## Inside This Skill
+## Inside This Repo
 
 ### Main Skill File
-- `SKILL.md` - Complete skill guidance (7,000+ words)
+- `SKILL.md` - Complete skill guidance including the self-evaluation and retry loop
   - 7-part workflow from strategy through publication
   - Evidence-based best practices from 2026 research
   - Common mistakes and how to fix them
   - Content templates for 5 different carousel types
+  - Self-evaluation rubric and retry loop instructions
 
-### Supporting Resources
-- `references/quick-reference.md` - 60-second summary with checklists and formulas
-- `references/planning-worksheet.md` - Fillable worksheet for planning your carousel step-by-step
-- `references/research-summary.md` - Complete research data and evidence behind all recommendations
+### Evaluation Framework (`linkedin_carousel_eval/`)
+- `evaluation-guide.md` - How to interpret scores, run manual evals, and use results to improve the skill
+- `grading-rubric.json` - Machine-readable rubric: 5 dimensions, weights, score levels, and 12 assertion tests
+- `test-cases.json` - 10 test cases covering creation, design, troubleshooting, posting, and iteration
+
+### Supporting References (`references/`)
+- `quick-reference.md` - 60-second summary with checklists and formulas
+- `planning-worksheet.md` - Fillable worksheet for planning a carousel step-by-step
+- `research-summary.md` - Complete research data and evidence behind all recommendations
+
+## Evaluation Dimensions
+
+After every session, Claude scores its own output across 5 dimensions:
+
+| Dimension | Weight | What it measures |
+|---|---|---|
+| Evidence-Based Recommendations | 25% | Cites 2026 research data; explains why recommendations work |
+| Actionable Specificity | 25% | Specific numbers (px, words, timing) vs. vague advice |
+| Content-Type Matching | 20% | Tailors guidance to framework vs. narrative vs. contrarian |
+| Problem Diagnosis & Root Cause | 15% | Identifies root causes, not just symptoms (troubleshooting sessions) |
+| Workflow Clarity & Completeness | 15% | Step-by-step with tools, checkpoints, and sequencing |
+
+**Pass threshold:** 70% overall, with all dimensions ≥ 2.0
+**Excellence threshold:** 90% (triggers auto-retry if not met)
 
 ## Key Stats (2026 Data)
 
@@ -54,11 +97,10 @@ Trigger this skill when you want to:
 
 ## Quick Start
 
-1. Open the skill when creating a LinkedIn carousel
-2. Start with Part 1: Strategy & Planning
-3. Use the 60-second quick reference or planning worksheet
-4. Follow the workflow through publication
-5. Track performance against benchmarks
+1. Load the skill into Claude Code
+2. Prompt Claude with what you want to create (e.g., "Help me create a LinkedIn carousel about [topic]")
+3. Claude completes the guidance, then automatically scores and revises its output
+4. If the score doesn't reach 90% after two attempts, a manual review flag is shown with specific gaps to address
 
 ## Contents of Each Part
 
@@ -185,26 +227,28 @@ See `research-summary.md` for complete citations and data.
 - **Posting** → Follow Part 6 step-by-step
 - **Performance** → Compare to Part 7 benchmarks
 
+## Improving the Skill
+
+The evaluation framework is designed to surface where the skill falls short. If a dimension consistently scores below 3:
+
+1. **Evidence-Based** — add newer or more specific research citations to `SKILL.md`
+2. **Actionable Specificity** — add missing specs (dimensions, word counts, timing) where the output was vague
+3. **Content-Type Matching** — expand the type-specific playbooks in the Appendix
+4. **Problem Diagnosis** — add more troubleshooting scenarios to the common mistakes section
+5. **Workflow Clarity** — add numbered steps or checkpoints to the relevant part
+
+Re-run the affected test cases from `test-cases.json` after any update to verify improvement.
+
 ## Updates & Maintenance
 
-This skill was created with 2026 research. LinkedIn's algorithm and best practices continue to evolve. Recommended:
-
-- Test recommendations against your own analytics
-- Track saves, dwell time, and engagement rate
-- Iterate based on your audience's response
-- Check back in 6 months for algorithm updates
-
-## Feedback & Improvement
-
-If you find practices that don't match current performance:
-- Test against your own audience (individual results vary by industry)
-- Track metrics over 4-8 carousel posts before concluding
-- Note differences in: audience size, content type, industry
-- Consider updating skill with new learnings
+This skill is based on 2026 LinkedIn research. As the algorithm evolves:
+- Track saves, dwell time, and engagement rate against your own carousels
+- Run the 10 test cases periodically to catch skill drift
+- Update `SKILL.md` and `research-summary.md` with new findings
 
 ---
 
 **Created:** June 2026
-**Version:** 1.0
+**Version:** 1.1
 **Research cutoff:** June 2026
 **Tested:** Based on 2M+ LinkedIn posts analyzed in 2026
