@@ -1,8 +1,33 @@
 # LinkedIn Carousel Agent
 
-A Claude skill that turns **any topic you give it** into a finished, ready-to-build LinkedIn carousel — actual slide-by-slide copy in your voice, ready to drop into Canva. It runs a short discovery interview first so the content is genuinely yours, then writes the slides. A **separate evaluator agent** independently grades the result after every session, without prompting.
+A Claude Code **plugin** that turns **any topic you give it** into a finished, ready-to-build LinkedIn carousel — actual slide-by-slide copy in your voice, ready to drop into Canva. It runs a short discovery interview first so the content is genuinely yours, then writes the slides. A **separate evaluator agent** independently grades the result after every session, without prompting.
 
 **The deliverable is a carousel about your topic — not a carousel about how carousels work.** The 2026 engagement research lives under the hood as craft knowledge that shapes *how* the slides are written (sharp hook, tight copy, ~7 slides). It is never quoted back at you unless you ask.
+
+## Install
+
+This repo is a Claude Code plugin marketplace. To install the skill:
+
+```text
+/plugin marketplace add GwnDrlng/linkedin-carousel-agent
+/plugin install linkedin-carousel@linkedin-carousel-agent
+```
+
+Then run `/plugin` to confirm it's enabled. Once installed you can either invoke the skill directly:
+
+```text
+/linkedin-carousel:linkedin-carousel-creator
+```
+
+…or just describe what you want in plain language ("help me make a LinkedIn carousel about cold-water swimming") and Claude will load the skill automatically. The bundled `carousel-evaluator` agent comes with it and scores the output after each session.
+
+**Local development / testing** (no install needed) — from a clone of this repo:
+
+```bash
+claude --plugin-dir ./plugins/linkedin-carousel
+```
+
+`/help` will then list `/linkedin-carousel:linkedin-carousel-creator` and `/agents` will list `carousel-evaluator`. Run `/reload-plugins` to pick up edits without restarting.
 
 ## How It Works
 
@@ -31,16 +56,6 @@ PASS? ──Yes──→ Done ✓
 
 The creator interviews you, writes the carousel for your subject, then hands it to the independent evaluator. The evaluator decides pass/fail; the creator reacts — revising once if it fails and re-submitting to a fresh judge, then flagging for manual review if it still falls short after two attempts. The creator never overrules the score.
 
-## What the Skill Covers
-
-1. **Strategy & Planning** - Hook formulas, narrative structure, content type selection
-2. **Content Development** - Slide-by-slide outlines, text density rules, headline writing
-3. **Design Specifications** - Dimensions, typography, color, mobile readiness
-4. **Workflow** - Tools, export settings, file preparation
-5. **Quality Checks** - Pre-publication validation checklist
-6. **LinkedIn Posting** - Upload steps, caption formula, timing optimization
-7. **Performance Tracking** - Metrics, benchmarks, iteration strategies
-
 ## When to Use This Skill
 
 Trigger this skill when you want to:
@@ -59,26 +74,36 @@ Trigger this skill when you want to:
 
 ## Inside This Repo
 
+```
+linkedIn_carousel_creator/                 # marketplace root
+├── .claude-plugin/marketplace.json        # lists the plugin (used by /plugin marketplace add)
+└── plugins/linkedin-carousel/             # the plugin
+    ├── .claude-plugin/plugin.json         # plugin manifest (name, version, author)
+    ├── skills/linkedin-carousel-creator/
+    │   ├── SKILL.md                        # the generator skill + dispatch-to-evaluator retry loop
+    │   └── references/                     # supporting craft docs (see below)
+    ├── agents/carousel-evaluator.md        # the independent judge subagent
+    └── eval/                               # evaluation framework
+        ├── grading-rubric.json             # machine-readable rubric (source of truth)
+        ├── evaluation-guide.md             # how to interpret scores / run manual evals
+        └── test-cases.json                 # 11 regression test cases
+```
+
 ### Main Skill File (the generator)
-- `SKILL.md` - Complete skill guidance including the discovery interview and the dispatch-to-evaluator retry loop
-  - Discovery interview that personalizes the carousel to you before drafting
-  - 7-part craft workflow from strategy through publication (used silently to shape the slides)
-  - Common mistakes and how to fix them
-  - Content templates for 5 different carousel types
-  - Instructions to hand the output to the independent evaluator and act on its verdict
+- `skills/linkedin-carousel-creator/SKILL.md` — Complete skill guidance: the discovery interview, the 7-part craft workflow (used silently to shape the slides), common mistakes, content templates for 5 carousel types, and the dispatch-to-evaluator retry loop. References to the rubric and evaluator use `${CLAUDE_PLUGIN_ROOT}` so they resolve wherever the plugin is installed.
 
-### Independent Evaluator (`.claude/agents/`)
-- `carousel-evaluator.md` - A separate judge subagent. Sees only the brief + the carousel, scores it blind against the rubric, and returns a pass/fail scorecard with specific gaps. It does not write or revise carousels — keeping the creator and the grader cleanly separated.
+### Independent Evaluator (`agents/`)
+- `carousel-evaluator.md` — A separate judge subagent. Sees only the brief + the carousel, scores it blind against the rubric, and returns a pass/fail scorecard with specific gaps. It does not write or revise carousels — keeping the creator and the grader cleanly separated.
 
-### Evaluation Framework (`linkedin_carousel_eval/`)
-- `evaluation-guide.md` - How to interpret scores, run manual evals, and use results to improve the skill
-- `grading-rubric.json` - Machine-readable rubric: 6 content-first dimensions (75% content / 25% craft), score levels, and 12 assertion tests (including an anti-stat-recitation check)
-- `test-cases.json` - 11 test cases covering content creation (incl. a non-business topic), design/timing Q&A, deck review, troubleshooting, and a discovery-first / anti-stat-dump guard
+### Evaluation Framework (`eval/`)
+- `evaluation-guide.md` — How to interpret scores, run manual evals, and use results to improve the skill
+- `grading-rubric.json` — Machine-readable rubric: 6 content-first dimensions (75% content / 25% craft), score levels, and 12 assertion tests (including an anti-stat-recitation check)
+- `test-cases.json` — 11 test cases covering content creation (incl. a non-business topic), design/timing Q&A, deck review, troubleshooting, and a discovery-first / anti-stat-dump guard
 
-### Supporting References (`references/`)
-- `quick-reference.md` - 60-second summary with checklists and formulas
-- `planning-worksheet.md` - Fillable worksheet for planning a carousel step-by-step
-- `research-summary.md` - Complete research data and evidence behind all recommendations
+### Supporting References (`skills/linkedin-carousel-creator/references/`)
+- `quick-reference.md` — 60-second summary with checklists and formulas
+- `planning-worksheet.md` — Fillable worksheet for planning a carousel step-by-step
+- `research-summary.md` — Complete research data and evidence behind all recommendations
 
 ## Evaluation Dimensions
 
@@ -105,160 +130,21 @@ These figures shape *how* the skill writes your slides. They are never quoted ba
 - Strong hook on slide 1; clear CTA on the last
 - Post timing and metric priorities for when you ask about posting/performance
 
-## Quick Start
-
-1. Load the skill into Claude Code
-2. Prompt Claude with what you want to create (e.g., "Help me create a LinkedIn carousel about [topic]")
-3. Claude completes the guidance, then automatically scores and revises its output
-4. If the score doesn't reach 90% after two attempts, a manual review flag is shown with specific gaps to address
-
-## Contents of Each Part
-
-### Part 1: Strategy & Planning
-- How to write a hook that earns the swipe
-- 5 narrative arc templates
-- Specific hook formulas that work
-
-### Part 2: Content Development
-- Slide-by-slide outline template
-- The 5-second rule and text density rules
-- Avoiding common dead carousels
-
-### Part 3: Design Specifications
-- Recommended dimensions (1080 × 1350px portrait)
-- Font, color, and spacing rules
-- What NOT to do (common design mistakes)
-
-### Part 4: Technical Workflow
-- Recommended tools (Canva, Google Slides, PowerPoint, Figma)
-- Export settings and checklist
-
-### Part 5: Pre-Publication Quality Check
-- Content validation checklist
-- Design consistency verification
-- Mobile readiness testing
-
-### Part 6: LinkedIn Posting
-- Step-by-step upload process
-- Caption formula
-- Timing optimization
-
-### Part 7: Performance Tracking
-- Metrics to monitor (saves, dwell time, comments)
-- 2026 benchmarks
-- Iteration strategies
-
-### Appendix: Templates by Content Type
-- Framework (e.g., "The 3-C Model")
-- Step-by-Step Process
-- Contrarian Argument
-- Data Visualization
-- Personal Narrative
-
-## How to Use the References
-
-**For quick answers:** Use `quick-reference.md`
-- 60-second summary
-- Hook formulas
-- Caption formula
-- Design checklist
-- Timing recommendations
-
-**For planning:** Use `planning-worksheet.md`
-- Fillable worksheet
-- Strategy section
-- Outline template
-- Checklist for all steps
-- Post-publish evaluation
-
-**For deep research:** Use `research-summary.md`
-- All 2026 engagement data
-- Why each recommendation works
-- Performance benchmarks by audience size
-- What works vs what doesn't
-- Data sources and caveats
-
-## Evidence & Research
-
-All recommendations are based on 2026 LinkedIn research from:
-- Oktopost B2B benchmarks (1,000+ company pages)
-- Buffer State of Social Media (52M+ posts analyzed)
-- LinkedIn official algorithm research
-- Multiple independent carousel studies
-
-See `research-summary.md` for complete citations and data.
-
-## Best Practices Summary
-
-**Content**
-- 7 slides optimal (range: 5-10)
-- 30 words max per slide
-- One idea per slide
-- Specific, not generic
-- Frameworks are saveable
-
-**Design**
-- 1080 × 1350px (portrait, mobile-first)
-- 2 fonts, 3 colors throughout
-- High contrast, readable on phone
-- One focal point per slide
-
-**Strategy**
-- Strong hook on slide 1 (determines 80% of performance)
-- Clear narrative arc throughout
-- Named frameworks people can reuse
-- Save-worthy content (treats reader time as precious)
-
-**Engagement**
-- Tuesday-Wednesday posting
-- 10 AM-12 PM local time
-- Monitor saves (most important metric)
-- Target: 15-20 seconds dwell time
-- 5-10% save rate
-
-## Top 3 Reasons Carousels Fail
-
-1. **Weak hook** - First slide doesn't earn the swipe
-2. **Text walls** - Too much content per slide (over 30 words)
-3. **No clear structure** - Reads like scattered thoughts instead of progression
-
-## Top 3 Reasons Carousels Succeed
-
-1. **Specific frameworks** - People save things they can reuse
-2. **Clear progression** - Each slide creates curiosity for the next
-3. **Save-driven content** - Educational value + referenceable content
-
-## For More Help
-
-**If you're stuck on:**
-- **Strategy** → Read Part 1 and the narrative arc templates
-- **Writing** → Use the quick-reference hook formulas
-- **Design** → Check Part 3 design specifications
-- **Posting** → Follow Part 6 step-by-step
-- **Performance** → Compare to Part 7 benchmarks
-
 ## Improving the Skill
 
-The evaluation framework is designed to surface where the skill falls short. If a dimension consistently scores below 3:
-
-1. **Topical Substance** — sharpen the discovery prompts so the skill pulls the user's real material; reinforce "use their specifics"
-2. **Hook & Narrative** — expand the hook formulas and narrative-arc templates in `SKILL.md` Part 1
-3. **Personalization & Voice** — make the discovery interview more pointed about audience and voice
-4. **Silent Craft Adherence** — reinforce the "internal-only, never recite the research" rule
-5. **Discovery & Fit** — make the discovery step earlier and clearer in the workflow
-
-Re-run the affected test cases from `test-cases.json` after any update to verify improvement.
+The evaluation framework is designed to surface where the skill falls short. If a dimension consistently scores below 3, sharpen the matching part of `SKILL.md` (discovery prompts for Topical Substance / Personalization, hook formulas and narrative arcs for Hook & Narrative, the "never recite the research" rule for Silent Craft), then re-run the affected cases from `eval/test-cases.json` to verify improvement.
 
 ## Updates & Maintenance
 
 This skill is based on 2026 LinkedIn research. As the algorithm evolves:
 - Track saves, dwell time, and engagement rate against your own carousels
 - Run the 11 test cases periodically to catch skill drift
-- Update `SKILL.md` and `research-summary.md` with new findings
+- Update `SKILL.md` and `references/research-summary.md` with new findings
+- Bump `version` in `plugins/linkedin-carousel/.claude-plugin/plugin.json` so installed users receive the update
 
 ---
 
 **Created:** June 2026
-**Version:** 1.1
+**Version:** 1.1.0
 **Research cutoff:** June 2026
 **Tested:** Based on 2M+ LinkedIn posts analyzed in 2026

@@ -4,7 +4,7 @@ This guide explains how to evaluate whether the skill is doing its real job: **t
 
 ## Who does the grading
 
-Scoring is done by a **separate evaluator agent** (`.claude/agents/carousel-evaluator.md`), not by the agent that wrote the carousel. The creator knows what it *meant* and will give itself credit for things that aren't on the page — so it never grades its own work. The independent evaluator receives only the **brief** and the **output**, reads this rubric (`grading-rubric.json`), and scores blind.
+Scoring is done by a **separate evaluator agent** (`../agents/carousel-evaluator.md`), not by the agent that wrote the carousel. The creator knows what it *meant* and will give itself credit for things that aren't on the page — so it never grades its own work. The independent evaluator receives only the **brief** and the **output**, reads this rubric (`grading-rubric.json`), and scores blind.
 
 The loop:
 

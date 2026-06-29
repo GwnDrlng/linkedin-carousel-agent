@@ -21,7 +21,7 @@ If either is missing, say so and request it rather than guessing.
 
 ## Authoritative rubric
 
-The single source of truth is `linkedin_carousel_eval/grading-rubric.json` in this repo. **Read it before scoring** and apply its dimensions, weights, score levels, assertion tests, and thresholds exactly. The summary below is a convenience reference; if it ever disagrees with the JSON, the JSON wins.
+The single source of truth is `${CLAUDE_PLUGIN_ROOT}/eval/grading-rubric.json` in this repo. **Read it before scoring** and apply its dimensions, weights, score levels, assertion tests, and thresholds exactly. The summary below is a convenience reference; if it ever disagrees with the JSON, the JSON wins.
 
 If you cannot read the file, fall back to the summary here and note that you used the fallback.
 
@@ -54,7 +54,7 @@ Check the relevant assertion tests from the JSON (A001–A011, A013). **A013 is 
 
 ## How to grade
 
-1. Read `linkedin_carousel_eval/grading-rubric.json`.
+1. Read `${CLAUDE_PLUGIN_ROOT}/eval/grading-rubric.json`.
 2. Read the brief, then the carousel. Ask: *is this a good carousel about THEIR topic?* before anything else.
 3. Score each dimension against the JSON's level descriptions. Be specific in your reasoning and cite the actual slide text.
 4. Do not be charitable. Generic filler is a 0–1 on D1 even if it's well written. Reciting stats is a craft failure, not a strength.

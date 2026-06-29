@@ -495,13 +495,13 @@ Spawn the **`carousel-evaluator`** subagent (via the Agent tool, `subagent_type:
 1. **The original user brief** plus any discovery answers the user gave.
 2. **The full carousel you produced** (every slide's headline + body, the caption, and any surrounding guidance).
 
-Do **not** pass your own reasoning, justifications, or a suggested score. The evaluator reads the authoritative rubric (`linkedin_carousel_eval/grading-rubric.json`), scores blind, and returns a scorecard with a pass/fail verdict and specific gaps. Relay its scorecard to the user verbatim — do not edit, soften, or re-score it yourself.
+Do **not** pass your own reasoning, justifications, or a suggested score. The evaluator reads the authoritative rubric (`${CLAUDE_PLUGIN_ROOT}/eval/grading-rubric.json`), scores blind, and returns a scorecard with a pass/fail verdict and specific gaps. Relay its scorecard to the user verbatim — do not edit, soften, or re-score it yourself.
 
 ### Fallback: if the evaluator agent isn't available
 
 This skill is portable. When it runs outside a Claude Code project context, the `carousel-evaluator` subagent (and the Agent tool that spawns it) may not exist. If dispatch isn't available:
 
-1. **Prefer a real second set of eyes.** Open a **fresh, separate session/chat** with no memory of how you built the carousel, paste in the brief + the output + `linkedin_carousel_eval/grading-rubric.json` (or `.claude/agents/carousel-evaluator.md`), and have that session score it. This preserves the independence that makes the score trustworthy.
+1. **Prefer a real second set of eyes.** Open a **fresh, separate session/chat** with no memory of how you built the carousel, paste in the brief + the output + `${CLAUDE_PLUGIN_ROOT}/eval/grading-rubric.json` (or `${CLAUDE_PLUGIN_ROOT}/agents/carousel-evaluator.md`), and have that session score it. This preserves the independence that makes the score trustworthy.
 2. **If that's not possible, self-score — but say so.** Apply the rubric as a deliberate critic pass and label the result clearly:
 
    ```
@@ -524,7 +524,7 @@ Content is 75% of the score, silent craft + discovery is 25%:
 - **Silent Craft Adherence (15%)** — format applied invisibly; **reciting engagement stats at the user is penalized**
 - **Discovery & Fit (10%)** — discovery questions asked (or assumptions stated) before drafting
 
-Pass threshold: **90%**, with every dimension ≥ 2.0. The full score levels and assertion tests live in `linkedin_carousel_eval/grading-rubric.json` — the evaluator's source of truth. You don't reproduce them here and you don't pre-judge; your job is to write well, dispatch honestly, and respond to the verdict.
+Pass threshold: **90%**, with every dimension ≥ 2.0. The full score levels and assertion tests live in `${CLAUDE_PLUGIN_ROOT}/eval/grading-rubric.json` — the evaluator's source of truth. You don't reproduce them here and you don't pre-judge; your job is to write well, dispatch honestly, and respond to the verdict.
 
 ### Retry Loop (Required) — driven by the evaluator, not by you
 
@@ -554,4 +554,4 @@ the grading rubric if the standard itself is off.
 
 **Rules:** Never grade your own output. Never overrule the evaluator's score. Each revision gets a fresh evaluator instance. Never run more than 2 revision cycles per session.
 
-> Single source of truth: the rubric lives in `linkedin_carousel_eval/grading-rubric.json` and the judge's instructions in `.claude/agents/carousel-evaluator.md`. Update those, not a copy here, when the standard changes.
+> Single source of truth: the rubric lives in `${CLAUDE_PLUGIN_ROOT}/eval/grading-rubric.json` and the judge's instructions in `${CLAUDE_PLUGIN_ROOT}/agents/carousel-evaluator.md`. Update those, not a copy here, when the standard changes.
