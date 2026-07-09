@@ -56,6 +56,20 @@ PASS? ──Yes──→ Done ✓
 
 The creator interviews you, writes the carousel for your subject, then hands it to the independent evaluator. The evaluator decides pass/fail; the creator reacts — revising once if it fails and re-submitting to a fresh judge, then flagging for manual review if it still falls short after two attempts. The creator never overrules the score.
 
+That's the **runtime** loop. A second, offline **training** loop improves `SKILL.md` itself between releases (see *Improving the Skill*):
+
+```
+eval/test-cases.json (8 train / 3 held-out validation)
+    ↓ replay each brief via headless claude -p with a CANDIDATE SKILL.md
+Headless judge scores each output against eval/grading-rubric.json
+    ↓ train-case verdicts
+Optimizer model proposes 1-4 bounded, anchor-based edits + a hypothesis
+    ↓ candidate skill
+Validation gate: mean score on the 3 held-out cases must improve
+    ├─ accepted → becomes the new best (versioned in optimizer/skill_history/)
+    └─ rejected → logged; hypothesis fed back so it isn't retried
+```
+
 ## When to Use This Skill
 
 Trigger this skill when you want to:
@@ -83,10 +97,17 @@ linkedIn_carousel_creator/                 # marketplace root
     │   ├── SKILL.md                        # the generator skill + dispatch-to-evaluator retry loop
     │   └── references/                     # supporting craft docs (see below)
     ├── agents/carousel-evaluator.md        # the independent judge subagent
-    └── eval/                               # evaluation framework
-        ├── grading-rubric.json             # machine-readable rubric (source of truth)
-        ├── evaluation-guide.md             # how to interpret scores / run manual evals
-        └── test-cases.json                 # 11 regression test cases
+    ├── eval/                               # evaluation framework
+    │   ├── grading-rubric.json             # machine-readable rubric (source of truth)
+    │   ├── evaluation-guide.md             # how to interpret scores / run manual evals
+    │   └── test-cases.json                 # 11 regression test cases
+    └── optimizer/                          # SkillOpt-style training loop for SKILL.md
+        ├── optimize.py                     # rollout → judge → propose edits → validation gate
+        ├── optimizer-prompt.md             # instructions for the edit-proposing model
+        ├── judge-prompt.md                 # headless judge (applies eval/grading-rubric.json)
+        ├── config.json                     # models, val split, epsilon, budget knobs
+        ├── skill_history/                  # every candidate skill, versioned (winner: best.md)
+        └── results/optimizer_log.jsonl     # append-only experiment log
 ```
 
 ### Main Skill File (the generator)
@@ -133,6 +154,31 @@ These figures shape *how* the skill writes your slides. They are never quoted ba
 ## Improving the Skill
 
 The evaluation framework is designed to surface where the skill falls short. If a dimension consistently scores below 3, sharpen the matching part of `SKILL.md` (discovery prompts for Topical Substance / Personalization, hook formulas and narrative arcs for Hook & Narrative, the "never recite the research" rule for Silent Craft), then re-run the affected cases from `eval/test-cases.json` to verify improvement.
+
+### Automated: the optimizer loop (`plugins/linkedin-carousel/optimizer/`)
+
+`SKILL.md` can also be trained automatically, SkillOpt-style. The optimizer replays
+the eval test cases through headless Claude Code sessions with a candidate skill,
+grades each output with an independent headless judge against
+`eval/grading-rubric.json`, proposes 1-4 bounded anchor-based edits from the
+train-case verdicts, and **accepts a proposal only if the mean score on held-out
+validation cases (`carousel_003`, `_008`, `_011` by default) improves by
+`epsilon_pct`**:
+
+```bash
+python3 plugins/linkedin-carousel/optimizer/optimize.py            # train
+python3 plugins/linkedin-carousel/optimizer/optimize.py --apply    # deploy winner
+python3 plugins/linkedin-carousel/optimizer/optimize.py --selftest # offline checks
+```
+
+Every experiment logs append-only to `optimizer/results/optimizer_log.jsonl`; every
+candidate skill is versioned in `optimizer/skill_history/` (winner: `best.md`). The
+live `SKILL.md` is never touched without `--apply`. Guardrails: frontmatter is
+edit-protected, the skill can't grow past `max_skill_words`, and the session stops
+at `max_usd`. Knobs (models, val cases, epsilon, judge samples) live in
+`optimizer/config.json`; the optimizer's own instructions — the file *you* iterate
+on — are `optimizer/optimizer-prompt.md`. Raise `judge_samples` to 2-3 to average
+out judge noise before trusting small deltas.
 
 ## Updates & Maintenance
 
