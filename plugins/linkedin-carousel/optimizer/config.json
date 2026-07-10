@@ -1,0 +1,13 @@
+{
+  "rollout_model": "sonnet",
+  "judge_model": "opus",
+  "optimizer_model": "opus",
+  "val_case_ids": ["carousel_003", "carousel_008", "carousel_011"],
+  "experiments": 5,
+  "judge_samples": 1,
+  "epsilon_pct": 2.0,
+  "max_usd": 15.0,
+  "workers": 3,
+  "call_timeout_seconds": 600,
+  "max_skill_words": 4200
+}
